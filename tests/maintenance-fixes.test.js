@@ -7,6 +7,7 @@ const vm = require('node:vm');
 const { parse } = require('acorn');
 const { collectBeanDetails, formatBeanIncome } = require('../function/bean-statistics');
 const { taskItems, pendingTasks, assignWorkers } = require('../function/joy-safe');
+const { attachLegacy } = require('../function/jd-runtime');
 const now = () => Date.parse('2026-10-08T12:00:00+08:00');
 const row = (date, amount, eventMassage = '签到') => ({ date, amount, eventMassage });
 const ok = detailList => ({ ok: true, data: { detailList } });
@@ -63,10 +64,18 @@ test('legacy asset report suppresses initialized zeroes and does not overwrite c
     vm.runInContext(source.slice(report.start, report.end) + '; KanCXAx();', context, { timeout: 100 });
     assert.match(output.join(''), /未知/); assert.doesNotMatch(output.join(''), /0豆/);
     let cache, writes = 0;
-    function walk(n) { if (!n || typeof n !== 'object') return; if (n.type === 'ConditionalExpression' && n.test.type === 'MemberExpression' && n.test.property.name === 'maintenanceUnknown') cache = n; for (const v of Object.values(n)) { if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === 'object') walk(v); } }
+    function walk(n) { if (!n || typeof n !== 'object') return; if (n.type === 'ConditionalExpression' && n.test.type === 'MemberExpression' && n.test.property.name === 'maintenanceUnknown' && n.alternate.type === 'CallExpression' && n.alternate.callee.object?.name === 'eS8cy0') cache = n; for (const v of Object.values(n)) { if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === 'object') walk(v); } }
     walk(tree);
     assert.ok(cache);
     const cacheContext = vm.createContext({ $: { maintenanceUnknown: true }, console: { log() {} }, eS8cy0: { writeFile: () => { writes++; } }, rrEUgQ_: 'cache', gwKKaf0: '', HBPWW4t: () => 'writeFile' });
     vm.runInContext(source.slice(cache.start, cache.end), cacheContext, { timeout: 100 });
     assert.equal(writes, 0);
+});
+
+test('legacy statistics adapter treats a nominal success without metric data as unknown', async () => {
+    const env = { done() {} };
+    attachLegacy(env, { statistics: true, transport: async () => ({ status: 200, text: async () => '{"code":0}' }) });
+    const error = await new Promise(resolve => env.post({ url: 'https://api.m.jd.com/client.action' }, resolve));
+    assert.match(error, /缺少数据/); assert.equal(env.maintenanceUnknown, true);
+    env.done();
 });

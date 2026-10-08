@@ -203,7 +203,7 @@
     {
       "file": "function/jd-runtime.js",
       "kind": "dependency",
-      "sha256": "e7ac34e19dfb425f4606fa8106329bca7e1c746aa99adf413e9da53596022c05",
+      "sha256": "fbd30bbcc90c65ce43aafeb1f185ec16042544e428a68c33ed31cdadd7bc73be",
       "validation": "语法/静态依赖；运行路径需要对应任务证据"
     },
     {
@@ -359,7 +359,7 @@
     {
       "file": "jd_bean_change.js",
       "kind": "task",
-      "sha256": "472fd5b060d8013f0bf6e2c619d118da52b3f0f7ca6888ad36c929bf8afe4e16",
+      "sha256": "735b6cb85a3478d282c148aca5459b79db917b8c11eda7490bee243029ed286d",
       "validation": "见 status.json；语法及静态依赖检查"
     },
     {

@@ -88,13 +88,20 @@ function createRuntime({ cookie = '', transport = defaultTransport, sleep = paus
 }
 
 // Adapter for reviewed legacy tasks. New code uses createRuntime directly.
-function attachLegacy(env, { statistics = false, requireData = false, maxRequests = 40, maxDurationMs = 180000 } = {}) {
-    const runtime = createRuntime({ maxRequests, maxDurationMs });
+function attachLegacy(env, { statistics = false, requireData = false, maxRequests = 40, maxDurationMs = 180000, transport } = {}) {
+    const runtime = createRuntime({ maxRequests, maxDurationMs, ...(transport ? { transport } : {}) });
     const adapter = method => (options, callback = () => {}) => {
         if (typeof options === 'string') options = { url: options };
         runtime.request({ ...options, method }).then(result => {
             if (requireData && result.ok && result.data?.data == null) {
                 result.ok = false; result.reason = '业务数据为空';
+            }
+            if (statistics && result.ok) {
+                const data = result.data;
+                const payloads = [data?.data, data?.base, data?.rs, data?.result, data?.detailList, data?.jingDetailList];
+                if (!payloads.some(p => Array.isArray(p) || (p && typeof p === 'object' && Object.keys(p).length))) {
+                    result.ok = false; result.reason = '统计响应缺少数据字段';
+                }
             }
             if (!result.ok) { env.maintenanceUnknown = true; env.maintenanceReason = result.reason; }
             const data = result.body || JSON.stringify({ success: false, code: 'MAINTENANCE_STOP', data: null });
