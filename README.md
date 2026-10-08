@@ -8,23 +8,25 @@
 
 ## 青龙订阅
 
-推荐编辑现有的 `jd` 订阅，避免创建重复任务。在「订阅管理」中填写：
+迁移已有安装时更新原有 `jd` 订阅，避免创建重复任务。当前部署使用以下参数：
 
 - 链接：`https://github.com/cyuni1996/jdpro.git`
 - 分支：`main`
 - 别名：`6dylan6_jdpro`
-- 白名单：`^(jd_|jx_|jddj_)`
-- 黑名单：`backUp|^tools/|^tests/|^docs/|^docker/`
-- 依赖文件：`^jd[^_]|USER|JD|^function/|sendNotify|^notify\.py$|^utils/|^package(-lock)?\.json$|^requirements\.txt$`
-- 文件后缀：`js|py|sh`
+- 白名单：`(^|/)(jd_|jx_|jddj_)`
+- 黑名单：`backUp|(^|/)(tools|tests|docs|docker)/`
+- 依赖文件：`(^|/)jd[^_]|USER|JD|(^|/)function/|sendNotify|(^|/)notify\.py$|(^|/)utils/|(^|/)package(-lock)?\.json$|(^|/)requirements\.txt$`
+- 文件后缀：`js py sh`（青龙 2.20.2 使用空格分隔）
 - 定时设置：沿用现有订阅的设置。
 
 完整参数也保存在 [订阅配置](docs/subscription.json)。保留别名可以让原任务的 `task 6dylan6_jdpro/xxx.js` 命令、缓存和互助码路径继续对应同一目录。首次拉取前备份现有脚本，确认拉取日志与任务列表后再清理旧文件。
 
-以下命令可用于新建订阅；在表单中将别名设为 `6dylan6_jdpro` 后再运行：
+青龙 2.20.2 的表单在修改链接或分支时会重新生成“唯一值”，该字段默认禁用。迁移已有订阅时，可通过支持 `alias` 参数的青龙订阅 API 更新原记录并保留 `6dylan6_jdpro`；仅在表单中替换链接会改变目录名。[青龙表单实现](https://github.com/whyour/qinglong/blob/v2.20.2/src/pages/subscription/modal.tsx)。首次安装可以使用自动生成的别名，后续任务与依赖安装命令使用实际目录名。
+
+以下命令用于手动拉取，会按仓库地址和分支生成目录名：
 
 ```sh
-ql repo https://github.com/cyuni1996/jdpro.git '^(jd_|jx_|jddj_)' 'backUp|^tools/|^tests/|^docs/|^docker/' '^jd[^_]|USER|JD|^function/|sendNotify|^notify\.py$|^utils/|^package(-lock)?\.json$|^requirements\.txt$' main 'js|py|sh'
+ql repo https://github.com/cyuni1996/jdpro.git '(^|/)(jd_|jx_|jddj_)' 'backUp|(^|/)(tools|tests|docs|docker)/' '(^|/)jd[^_]|USER|JD|(^|/)function/|sendNotify|(^|/)notify\.py$|(^|/)utils/|(^|/)package(-lock)?\.json$|(^|/)requirements\.txt$' main 'js py sh'
 ```
 
 ## 依赖与账号
