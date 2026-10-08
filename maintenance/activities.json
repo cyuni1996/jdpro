@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-08",
+  "newVerifiedActivities": [],
+  "sources": [
+    {
+      "name": "京豆翻倍挑战",
+      "url": "https://h5.m.jd.com/pb/013640630/2MsVcneB4n8Nf77eHN1DPNcMurkx/index.html",
+      "activityId": "2MsVcneB4n8Nf77eHN1DPNcMurkx",
+      "start": "2023-12-26T00:00:00+08:00",
+      "end": "2024-12-31T23:59:59+08:00",
+      "state": "活动结束",
+      "enabled": false,
+      "reason": "官方规则明确有效期；页面仍可访问。没有据此停用任何无法对应到该活动 ID 的现有任务。"
+    },
+    {
+      "name": "抖音好评分享有奖活动",
+      "url": "https://pro.m.jd.com/mall/active/2KZFDNAyKERgfwuqf24DSXkBHXwY/index.html",
+      "activityId": "2KZFDNAyKERgfwuqf24DSXkBHXwY",
+      "start": "2026-09-05T00:00:00+08:00",
+      "end": "2026-09-20T23:59:59+08:00",
+      "state": "活动结束",
+      "enabled": false,
+      "reason": "官方规则已到期；购买及公开评价不在本轮实测范围。"
+    }
+  ]
+}

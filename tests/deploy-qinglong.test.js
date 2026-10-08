@@ -35,6 +35,9 @@ test('deployment preserves account caches and user configuration and is idempote
   assert.equal(second.status, 0, second.stderr);
   assert.match(second.stdout, /\(0 updated\)/);
   assert.equal(fs.statSync(path.join(target, 'jdCookie.js')).mtimeMs, before);
+  const marker = JSON.parse(fs.readFileSync(path.join(target, '.jdpro-deployment.json'), 'utf8'));
+  assert.match(marker.commit, /^[0-9a-f]{40}$/);
+  assert.ok(marker.files['function/jd-runtime.js']);
 });
 
 test('deployment rejects an unrelated destination before creating files', (t) => {
@@ -52,6 +55,9 @@ test('failed dependency installation does not record a successful lock', (t) => 
   t.after(() => fs.rmSync(temporary, { recursive: true, force: true }));
   const target = path.join(temporary, 'scripts', 'legacy_jdpro');
   const bin = path.join(temporary, 'bin');
+  fs.mkdirSync(path.join(target, 'node_modules'), { recursive: true });
+  fs.writeFileSync(path.join(target, 'jdCookie.js'), 'previous source');
+  fs.writeFileSync(path.join(target, 'node_modules/previous-runtime'), 'previous dependency');
   fs.mkdirSync(bin);
   fs.writeFileSync(path.join(bin, 'npm'), '#!/bin/sh\nexit 17\n', { mode: 0o755 });
   const result = spawnSync('python3', [deploy, target, '--install-deps'], {
@@ -60,4 +66,7 @@ test('failed dependency installation does not record a successful lock', (t) => 
   assert.equal(result.status, 17, result.stderr);
   assert.match(result.stderr, /Deployment failed/);
   assert.equal(fs.existsSync(path.join(target, 'node_modules/.jdpro-lock.sha256')), false);
+  assert.equal(fs.readFileSync(path.join(target, 'jdCookie.js'), 'utf8'), 'previous source');
+  assert.equal(fs.readFileSync(path.join(target, 'node_modules/previous-runtime'), 'utf8'), 'previous dependency');
+  assert.equal(fs.existsSync(path.join(target, 'function/jd-runtime.js')), false);
 });

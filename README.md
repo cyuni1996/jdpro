@@ -61,6 +61,8 @@ python3 -m pip install -r requirements.txt
 
 ## 检查与维护范围
 
+全量维护的逐项状态、受控验证、修复证据与每日维护规则见 [维护记录](docs/maintenance.md)。完整清单覆盖 51 个任务、互助 Shell 与公共依赖；尚未实测和认证阻塞的项目明确保留，不宣称全部恢复可用。
+
 ```sh
 npm ci --ignore-scripts --omit=optional --no-audit --no-fund
 npm run verify

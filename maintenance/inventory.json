@@ -1,0 +1,792 @@
+{
+  "taskCount": 51,
+  "sourceCount": 131,
+  "files": [
+    {
+      "file": "JDJRValidator_Pure.js",
+      "kind": "dependency",
+      "sha256": "1fd544f0173d582a28027d6197500dd6ec5536357c191f65a7c835771268ec3a",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "JDSignValidator.js",
+      "kind": "dependency",
+      "sha256": "d62403486d83e7bc97901900d0d73bf5cc06f5c324fccff3916b380acfde77ec",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "JS_USER_AGENTS.js",
+      "kind": "dependency",
+      "sha256": "8f6ce66ce893e75bbb50a9ef05ced9c3a87143bf4fa26db2dc98ab23a6cea482",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "USER_AGENTS.js",
+      "kind": "dependency",
+      "sha256": "97a0981751e66929aea421ded56a3791311cb95b2969b6584e3c93f43d829d31",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/JDJRValidator_Pure_smiek.js",
+      "kind": "dependency",
+      "sha256": "37a19a80b586e8fe8f8873f0cceb671faf6fd73cea66b0a1174ee7db12cc8540",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/activity-registry.js",
+      "kind": "dependency",
+      "sha256": "433c3cba448acf95ce364cfe10f25432b2b310c42d14b9ebb3ba0673221f0d07",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/assets/index_1.js",
+      "kind": "dependency",
+      "sha256": "5a70a1c5acbd2bf4f73d5b106cc3d0334edbdabb0d1cf26e4a20a4985fd5882d",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/assets/index_2.js",
+      "kind": "dependency",
+      "sha256": "3383ad2ee384bfd0b4eed5537f3203f305b7c5f023c7644e4d7999ffb81b9157",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/assets/index_3.js",
+      "kind": "dependency",
+      "sha256": "186e2a2508db3407bcfe1ba87333a62feba4607e34918388d774aea999ec848a",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/assets/index_4.js",
+      "kind": "dependency",
+      "sha256": "9ed21da1bf0989192274ad8734f0fd30d835a674c5b5b3651dcf5bcb950e01f5",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/assets/index_5.js",
+      "kind": "dependency",
+      "sha256": "e01386eb2c813c3eb091f10f2688ee564cdbc45989bd9aa3fc309607ecca860a",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/assets/index_6.js",
+      "kind": "dependency",
+      "sha256": "e71a4f7127878d3589eff003b13f0a566c207dfe3e3ff6d79ceb346e85aedbba",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/assets/index_7.js",
+      "kind": "dependency",
+      "sha256": "9189b254d14270c2b96c88fbbdb28a0e4b033cde73fd9eba5e9f6738500f3baf",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/bean-statistics.js",
+      "kind": "dependency",
+      "sha256": "34b6312d087a71095ed093652ae316a928a6a47e84ef295f4703dba876f3883f",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/cache/index.js",
+      "kind": "dependency",
+      "sha256": "d7d255ad3ec65ef05dd26f0aab9cdb5c7fe5b70fa80d8a7bf4158391a88c9d84",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/common.js",
+      "kind": "dependency",
+      "sha256": "c10e3c8a7c86afac5286014296b3eb7e2dc3fa40c3dc9f0374409ab4b8fe2983",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/config.js",
+      "kind": "dependency",
+      "sha256": "a3c1480c9176b99c88d0207f0576ca5987cb73339eab92d77b95bf73010728d5",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/cookie.js",
+      "kind": "dependency",
+      "sha256": "cbc7fa1a516cbb4c93ab195c0928f970754caee178e2c6dc1d7e668c386aec47",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/dyland.js",
+      "kind": "dependency",
+      "sha256": "eebf62f58f51eca93afcde5fccf4cf486684722a9c32809ec146bc559ef0e25d",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/dylank.js",
+      "kind": "dependency",
+      "sha256": "5e7eab4c0090205666e78bae1f103c8a2d2547106eca7c79a96b9d2191861416",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/dylano.js",
+      "kind": "dependency",
+      "sha256": "10b4ccfaa89c8a6366bce9646e10e971aaed99781d9f36ac7cc36febdb25b620",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/dylans.js",
+      "kind": "dependency",
+      "sha256": "8eece4160fc97daeab6918cc6187144f7de969cb6d90feca20841288c540abd4",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/dylanv.js",
+      "kind": "dependency",
+      "sha256": "857d8c21caf08573336a2128279d103854bbb0ad123ff132e073c736d686b67b",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/dylanw.js",
+      "kind": "dependency",
+      "sha256": "aa1138f3f3fcbb683a48ad32dd38af6089b04f385cdebd54c719b12f9a0f34ea",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/dylanx.js",
+      "kind": "dependency",
+      "sha256": "80eb75e149185c86fc88697ba29ef2a1948f83459a09bf4d843c44cb5133c4df",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/dylany.js",
+      "kind": "dependency",
+      "sha256": "e58bf456c9949087f99f6aa6dfb875d4d27b6130595446617f84a9c715209dd6",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/dylanz.js",
+      "kind": "dependency",
+      "sha256": "7357a05494519a0b4233e8184f2dc17158b2822920bf3a505cab976ff4f8bcfe",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/dylib.js",
+      "kind": "dependency",
+      "sha256": "1a487a8ae06485003c62a1a6b3212c672bd54b9eb21f6f074d8a023b211672d8",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/eval.js",
+      "kind": "dependency",
+      "sha256": "d8e224e65556713bc21a9ce2a4f7f3b4b3c774eb7686c06fe89ff8dae5df035f",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/getH5st3_0.js",
+      "kind": "dependency",
+      "sha256": "3618894b7a9e30573c7c447b85a47ee950d3fc683e12ac48c728cf057c1f4cf7",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/getToken.js",
+      "kind": "dependency",
+      "sha256": "0b6fba09e4c7826fe1f61850c95b818f94dc2f8a5df867214a0a01d50f163519",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/h5source/47.js",
+      "kind": "dependency",
+      "sha256": "d2c1f50cabbca519c25badf14e4217310831cd1661ae318487a0f3cd5a5c6159",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/h5st41.js",
+      "kind": "dependency",
+      "sha256": "2a8198eb00e5aa0e93b9e699b3effbc81cd3a826f3c5e51024e93d46e62a8567",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/jd-runtime.js",
+      "kind": "dependency",
+      "sha256": "e7ac34e19dfb425f4606fa8106329bca7e1c746aa99adf413e9da53596022c05",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/jdCommon.js",
+      "kind": "dependency",
+      "sha256": "75bda5410fd1bb8f465d0f82178c9192c83d1c18ed63c384693d431f136f5fe4",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/jdCommon1.js",
+      "kind": "dependency",
+      "sha256": "f6eee65437d8e24c05059985649d2526650a52a5334e114d10a5e73e1c7778b0",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/jdCrypto.js",
+      "kind": "dependency",
+      "sha256": "ab4b7f387f31016056e1ea42daaa7944c0e80e935097ee24b0fab4a7fe840ace",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/jdValidate.js",
+      "kind": "dependency",
+      "sha256": "94902b6bb1362de4076d6544849a1b64c8d65d869dbf77414aa598699d4ee93b",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/jdcookie.js",
+      "kind": "dependency",
+      "sha256": "345482fae9ea67c3e61590b5718be269266526e5ae4eaee71641cb8d89a9f077",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/joy-safe.js",
+      "kind": "dependency",
+      "sha256": "863030ddb54f40efbdb77e00558b61e75b5df75cc85cfa88256e086aeefb0d8e",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/jxAlgo.js",
+      "kind": "dependency",
+      "sha256": "b67620c99dd6e82e09e909bece88d877bae92394ad69c32cecaba6af936ec468",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/krgetH5st.js",
+      "kind": "dependency",
+      "sha256": "2b37fc4b202dacd61e2e3ffb731105dda391a8747d97326d9da3ef30c4fae2a8",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/krgetSign.js",
+      "kind": "dependency",
+      "sha256": "c188f5919e30f287d22177b96860861f30a8392bd0b50421fa61be89f674dd90",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/krgetToken.js",
+      "kind": "dependency",
+      "sha256": "4e895cc4719ba3cf7424abbb4ad3d034de7b8d846dffeba97da907b8447fd779",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/krgetua.js",
+      "kind": "dependency",
+      "sha256": "36740763215985f9cbb4e17a11af6ab15870f9856d19e9e50fcfb2aecf3a33a0",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/krh5st.js",
+      "kind": "dependency",
+      "sha256": "fbc706ec893bc4d6fbdcc083a5943bc11457eb7b090370acf3ae595b594befb9",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/krsavePrize.js",
+      "kind": "dependency",
+      "sha256": "75efd9788ffcc6b1ee33fcb945a62bff8dfe8970a5e28ba2ba0a8b2899f92b8f",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/krwxSavePrize.js",
+      "kind": "dependency",
+      "sha256": "80be434a7ffa41484a97aa1680004b8702ae0e15654135b511dcd0c6b397189c",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/magic.js",
+      "kind": "dependency",
+      "sha256": "3421f0d49d77da4025d11a59a618df6fcb622edcad519abd860ea6c8be91947e",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/proxy.js",
+      "kind": "dependency",
+      "sha256": "cbf6a8f8c8562a765eb86ad9b64c2c2b0824532650325f0de5e663e2c4d95173",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/ql.js",
+      "kind": "dependency",
+      "sha256": "dec3834addd419eec10837bfc98dd72728e25c7f9c9828ccd23440ca6f303280",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/savePrize.js",
+      "kind": "dependency",
+      "sha256": "762b5457807d1fc80c227d09e6a8bd335d07d5dba709adbaa22dd19a15eba6cc",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/sendJDNotify.js",
+      "kind": "dependency",
+      "sha256": "37f8739f70068af7add1b3f9fea63bde34119ac363137dbf5b4336beb2b66f92",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/sendNotify.js",
+      "kind": "dependency",
+      "sha256": "d0f2814a55432a47c35af188a54a935d30092fd2ca985e35b82fef5df3c72f89",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "function/sign_graphics_validate.js",
+      "kind": "dependency",
+      "sha256": "6e50d85b36f78c07f0c77e679c6aea3eae67a4abe89c5aac3f598ec8aa31b9d4",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "jdCookie.js",
+      "kind": "dependency",
+      "sha256": "b111e8e02b1addc73db7381fa0e76124451b86926bfd27cbbde953ecce2ed527",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "jd_AutoEval.js",
+      "kind": "task",
+      "sha256": "053b7424e8c1245f640220c1e1bcc5159af359b4e3b64a12b35e5792ba1e7af0",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_CheckCK.js",
+      "kind": "task",
+      "sha256": "20f46ebe3165c3afe27191fb9d9eb79fb29a789eaa763e5afa10efe4bf8c43b1",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_OnceApply.js",
+      "kind": "task",
+      "sha256": "ff87c097c5501da9632c8bfb96ab1fb70bdf2dfa0298e8cb8064b22bf5740693",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_bean_change.js",
+      "kind": "task",
+      "sha256": "472fd5b060d8013f0bf6e2c619d118da52b3f0f7ca6888ad36c929bf8afe4e16",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_bean_info.js",
+      "kind": "task",
+      "sha256": "209fc21e444356087e7a16941d7efac08648a32afef469e296ebe3c2b9f5842b",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_code2url.js",
+      "kind": "task",
+      "sha256": "8ec22636f8cf6ba0aa6115e3b4ec16326f94d10bb29fe3f285b5a1072ca00447",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_delLjq.js",
+      "kind": "task",
+      "sha256": "a3e4f8b558538816ff1467f0b123e0bcd0c3c3df6a29fdbc65d6794c34f6d5ed",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_deliverySign_sign.js",
+      "kind": "task",
+      "sha256": "01d2820889aab61625a1a46d657095a6b7d890281fb6342f35e9fe647b18cf10",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_dplh0609.js",
+      "kind": "task",
+      "sha256": "40d937a0b0c2d18c4f136b97b1255a7633d717a21e08ff360727983097e49667",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_dplhbshop.js",
+      "kind": "task",
+      "sha256": "aa26b9f50201e7ed7668c938b020ba36db5152433b41f58387bc0def7de799a2",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_dpqd_main.js",
+      "kind": "task",
+      "sha256": "fb7d0e4146e5199bc8cbe202b682a7f409edbf7b938d94753be06db396bdec62",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_dpqd_sign.js",
+      "kind": "task",
+      "sha256": "c1cef10624ff65c823134952cf2e093a5634382470eaab37b535e2b7c90a3199",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_dpqd_single.js",
+      "kind": "task",
+      "sha256": "ea809f74f76ace42539b66e01f60889db62b5e7b20ecf92d6b15cedeb9b2ad33",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_dwapp.js",
+      "kind": "task",
+      "sha256": "8052924d748fda91b1cdb0f02b923b4764fc4e78ac735a69ea9909645f613e44",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_farmnew_ck_help.js",
+      "kind": "task",
+      "sha256": "06c30d7a8de812a3e1d8641dde14fbf1482d6494449d8395225dd554e1d8af8d",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_farmnew_code_help.js",
+      "kind": "task",
+      "sha256": "e3756effa96c2ba375c0dc34947144812df4f471ff9bdeb3c89835772199de39",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_fish_help.js",
+      "kind": "task",
+      "sha256": "064502394d6bf61718c7cb000ed08c67586c4c0d15120f9e5fd71b07b3687da1",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_fruit_new.js",
+      "kind": "task",
+      "sha256": "2f681ed844d7328a5fd44b7279c249984a6934a041a9f343dabc7ec4dca03141",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_hdyxzd.js",
+      "kind": "task",
+      "sha256": "fc5fd8a9ad519926ab070fee053305b2e381f6cc787bb95e54147441045f436c",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_hssign.js",
+      "kind": "task",
+      "sha256": "a163713b5ed636e8416fa687b55c1785844a73901dddca2141dc89a27fad1e4b",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_ifdraw.js",
+      "kind": "task",
+      "sha256": "9cd67886a38d8659faf6a0dd3398485d88f49047cd6d3cb6711d572eb5a42c4a",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_indeps.js",
+      "kind": "task",
+      "sha256": "580822c7076a323824286ee99b3abd86a90cdf6286c0f828e3324074b9870691",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_jingpai.js",
+      "kind": "task",
+      "sha256": "fdef1bf5439d95e981b5a1898db1b9774806954ba303bfd92832013becce6747",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_joypark_leave.js",
+      "kind": "task",
+      "sha256": "f83231d69488928e9262dd06c758bc2fc9b705a3c972d39e89da156e7137ce81",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_joypark_task.js",
+      "kind": "task",
+      "sha256": "68b58939f2655a90852ba1f7291b6047b0ea0085e3c1f60853d0d8ff826f0e19",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_jrddzjd.js",
+      "kind": "task",
+      "sha256": "75db1a776183ab9a1b374d04cb7d093a44a68f3373db27fe116df865d1707b92",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_jrttlqy.js",
+      "kind": "task",
+      "sha256": "ba6472ab9497ae670e33707f6dcc5e6ff043d922864d4fbfd8d38a23f578eb2f",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_lmdraw.js",
+      "kind": "task",
+      "sha256": "87535f02fba9007ab984d1bfd3260b1674cec1868b461606ba880edce0d10293",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_luckyDraw.js",
+      "kind": "task",
+      "sha256": "7b3e548120e3a91f418530337b1e1ba122f763310fe5b2f81b3eb8e8a5f0f4f7",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_newfarmlottery.js",
+      "kind": "task",
+      "sha256": "8922857b5bd534db010020319a22338392427260c2e4df019bf0fc75f73261d8",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_pkabeans.js",
+      "kind": "task",
+      "sha256": "05c6bddabb9c53cf313abb33c56d363f7c50cb7e34fcbe157301304b3c8bf7ed",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_plantBean.js",
+      "kind": "task",
+      "sha256": "a978aa759131844225a727844e1e57c5272b9fae15ad3dfbded3ac6f1f8dccca",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_plantBean_help.js",
+      "kind": "task",
+      "sha256": "529a6da731e75c676f02a4977fb79fb84899c87adf6acd879cbe2f055cf3ab4c",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_proxy_check.js",
+      "kind": "task",
+      "sha256": "250f32aece53ab7d1f2a641569d042978319a0aba19ff3ab34daf8746322afc2",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_qy_sign.js",
+      "kind": "task",
+      "sha256": "934638c7c942a24925fdb2326f4829f44a98107fe10bdd18bbf27c0de8283ecc",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_rankVote.js",
+      "kind": "task",
+      "sha256": "0dd9202d57bb12a0d11965eda6dbe2cd492b73fde07d5c7d455bc09d73eb16d2",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_rmvcart.js",
+      "kind": "task",
+      "sha256": "8c29dbd3796040ad715f278cbd3fc49d3055aeb63b83cce6793a7a6e22aaddfc",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_sharecode.sh",
+      "kind": "sharecode-shell",
+      "sha256": "7a0d312606d71adcabeaeb4a03d9853be76e160b5a82cafc490e88fa01ac4b42",
+      "validation": "bash -n；未执行缓存写入或清理"
+    },
+    {
+      "file": "jd_signbeanact_.js",
+      "kind": "task",
+      "sha256": "7917eb9b303e539ee16cfcd8ae48ce968eef70dc87a5228df52708aa222d0f3f",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_sldraw.js",
+      "kind": "task",
+      "sha256": "e3fb4acd2f5610af201484a2fbce0457d88939a90553869ae938056d5fdc1f62",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_superRedBagDraw.js",
+      "kind": "task",
+      "sha256": "316f45940ca66de4f0549f0bb74525d8f0922d83a2b47f5258a55f03abcfb5cb",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_ttgd.js",
+      "kind": "task",
+      "sha256": "fa2585886cf2f9deea0568e8526a876fb0920e2d5fda1d5227fbae36e1c933a3",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_unsubscribe.js",
+      "kind": "task",
+      "sha256": "1f4e6cd28c22c3409e2ad4b2f2cc310c43c6f8182c7f0c37386d32bbb8a88435",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_vu50.js",
+      "kind": "task",
+      "sha256": "bbfb97df69a9e0422720c36e4a29ef1ca4eaeb27a3e76c12a6da9704bee28a8d",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_water_new.js",
+      "kind": "task",
+      "sha256": "b83fd565aa4c7e1d36e9b3e2791d1c9436d4d30693133e145784613b1bf91ecc",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_wduoyu.js",
+      "kind": "task",
+      "sha256": "4ea4465e46906bb8e7f8ebf1a6d8ef149550f90ae9c3c83d3a58a55d749ebd79",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_weGameLottery.js",
+      "kind": "task",
+      "sha256": "b89cf62cdc9d0af8baf3fa2db52b967666973cc8e0021320717240a79578b25c",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_wwmanor_merge.js",
+      "kind": "task",
+      "sha256": "b97454010f038a64ca1b325de573c26142cd5b01b677c601fffac3c3d85e8d38",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_wxtoken_m.js",
+      "kind": "task",
+      "sha256": "64521e863dc015ed6e4e23832691e27f59eb16c7a2d4ecf871e28630ea5e6398",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_xsjx.js",
+      "kind": "task",
+      "sha256": "b9bd88c9eb9d00ad30c13d93a1f992949b77eff1668658d78a423331d7fa6862",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_yssign.js",
+      "kind": "task",
+      "sha256": "0f6ea90abe7d1d880cdff256712a4d778726a50491cff30cd8f4e6303d2b35cb",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "jd_zjindan.js",
+      "kind": "task",
+      "sha256": "d73424b4bdbf5e475324f014e65265da5d361006a0cec692e52b18720b128bd4",
+      "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "sendNotify.js",
+      "kind": "dependency",
+      "sha256": "a415a27384800a44127d7722203e35416ee7d7306efcc27e2aefa3754051042f",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/3_1.js",
+      "kind": "dependency",
+      "sha256": "5a70a1c5acbd2bf4f73d5b106cc3d0334edbdabb0d1cf26e4a20a4985fd5882d",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/4.js",
+      "kind": "dependency",
+      "sha256": "e01386eb2c813c3eb091f10f2688ee564cdbc45989bd9aa3fc309607ecca860a",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/4_1.js",
+      "kind": "dependency",
+      "sha256": "3383ad2ee384bfd0b4eed5537f3203f305b7c5f023c7644e4d7999ffb81b9157",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/4_2.js",
+      "kind": "dependency",
+      "sha256": "186e2a2508db3407bcfe1ba87333a62feba4607e34918388d774aea999ec848a",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/4_3.js",
+      "kind": "dependency",
+      "sha256": "9ed21da1bf0989192274ad8734f0fd30d835a674c5b5b3651dcf5bcb950e01f5",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/4_7.js",
+      "kind": "dependency",
+      "sha256": "d02df0675428a8d82067f29e4213ea33dfe43efabd8fa9faab994798d47f1115",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/rebelsa.js",
+      "kind": "dependency",
+      "sha256": "d217b7e4c274b4eb059e75d9a4296d92255bf7988118be2df9a7e4d833a54443",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/rebelsb.js",
+      "kind": "dependency",
+      "sha256": "e01386eb2c813c3eb091f10f2688ee564cdbc45989bd9aa3fc309607ecca860a",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/rebelsc.js",
+      "kind": "dependency",
+      "sha256": "186e2a2508db3407bcfe1ba87333a62feba4607e34918388d774aea999ec848a",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/rebelsm.js",
+      "kind": "dependency",
+      "sha256": "9189b254d14270c2b96c88fbbdb28a0e4b033cde73fd9eba5e9f6738500f3baf",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/rebelsn.js",
+      "kind": "dependency",
+      "sha256": "d02df0675428a8d82067f29e4213ea33dfe43efabd8fa9faab994798d47f1115",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/rebelsv.js",
+      "kind": "dependency",
+      "sha256": "9ed21da1bf0989192274ad8734f0fd30d835a674c5b5b3651dcf5bcb950e01f5",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/rebelsx.js",
+      "kind": "dependency",
+      "sha256": "3383ad2ee384bfd0b4eed5537f3203f305b7c5f023c7644e4d7999ffb81b9157",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels/rebelsz.js",
+      "kind": "dependency",
+      "sha256": "5a70a1c5acbd2bf4f73d5b106cc3d0334edbdabb0d1cf26e4a20a4985fd5882d",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels_3_0.js",
+      "kind": "dependency",
+      "sha256": "eb679401e8c59c1832e1b6104b6714f297c7b73c17a1b8a67f94a7652d8e9209",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels_H.js",
+      "kind": "dependency",
+      "sha256": "4a10ab34ca493257905d37d5f8f095900a4c99cc576547d9c943760c466b1d0e",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels_Token.js",
+      "kind": "dependency",
+      "sha256": "988c708885b8804ba7656a8e4619c138b60a6533468eaea843b694e9f43208c0",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels_jdCommon.js",
+      "kind": "dependency",
+      "sha256": "bdb56f724d5753d54f203c00a5c143075cb2f5c2a6e91bb96868ce5c13def2d3",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels_proxy.js",
+      "kind": "dependency",
+      "sha256": "4daff78d2ba12695c1a33191a082981c822592dc426e504e5892a0342ba7276a",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels_savePrize.js",
+      "kind": "dependency",
+      "sha256": "952b2e54a86a94ef339d553b44e800d0d80057f08ce986a8beff55c6dd924b00",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/Rebels_sendJDNotify.js",
+      "kind": "dependency",
+      "sha256": "ef345d7975450c6084bdeda63a605a3c695d733c345743839782c658f172a023",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    },
+    {
+      "file": "utils/cache/index.js",
+      "kind": "dependency",
+      "sha256": "11240f8efb2dc753951b560e6040d4ab6190c16e31ed0ad5a68921682804921b",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
+    }
+  ]
+}

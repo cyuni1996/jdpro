@@ -9,7 +9,7 @@ if (process.env.JD_DEBUG === 'false') console.log = () => {};
 console.log(`\n====================共${CookieJDs.length}个京东账号Cookie=================`);
 console.log(`===========脚本执行时间：${formatdate(new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000))}============`);
 console.log('>>>>>>>>>>>>jdpro 维护版（原作者：6dylan6 等）>>>>>>>>>>>>>\n');
-console.log(`Tips：‼️mck没法跑了，appck还能行，总之g了\n`);
+console.log('提示：Cookie 的适用范围以各任务接口响应为准；403、风控或查询失败不等同于全部 Cookie 失效。\n');
 
 for (let i = 0; i < CookieJDs.length; i++) {
     if (!CookieJDs[i].match(/pt_pin=(.+?);/) || !CookieJDs[i].match(/pt_key=(.+?);/)) console.log(`\n提示:第 ${i + 1} 个京东账号 Cookie 填写不规范,可能会影响部分脚本正常使用。正确格式为: pt_key=xxx;pt_pin=xxx;（分号;不可少）\n`);
