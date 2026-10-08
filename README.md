@@ -18,10 +18,12 @@
 - 依赖文件：`(^|/)jd[^_]|USER|JD|(^|/)function/|sendNotify|(^|/)notify\.py$|(^|/)utils/|(^|/)package(-lock)?\.json$|(^|/)requirements\.txt$`
 - 文件后缀：`js py sh`（青龙 2.20.2 使用空格分隔）
 - 定时设置：沿用现有订阅的设置。
+- 自动添加任务、自动删除任务：迁移已有安装时关闭，保留原任务及定时设置。
+- 执行后：`python3 /ql/data/repo/cyuni1996_jdpro_main/tools/deploy_qinglong.py /ql/data/scripts/6dylan6_jdpro --install-deps`
 
-完整参数也保存在 [订阅配置](docs/subscription.json)。保留别名可以让原任务的 `task 6dylan6_jdpro/xxx.js` 命令、缓存和互助码路径继续对应同一目录。首次拉取前备份现有脚本，确认拉取日志与任务列表后再清理旧文件。
+完整参数也保存在 [订阅配置](docs/subscription.json)。执行后同步会更新原任务目录中的源码和依赖清单，保留 `BeanCache`、互助码、`function/user.js` 和其他本地配置。锁文件未变化时复用已安装的依赖；首次运行或锁文件变化时安装锁定版本，跳过 npm 安装脚本及可选图像依赖。首次拉取前备份现有脚本。
 
-青龙 2.20.2 的表单在修改链接或分支时会重新生成“唯一值”，该字段默认禁用。迁移已有订阅时，可通过支持 `alias` 参数的青龙订阅 API 更新原记录并保留 `6dylan6_jdpro`；仅在表单中替换链接会改变目录名。[青龙表单实现](https://github.com/whyour/qinglong/blob/v2.20.2/src/pages/subscription/modal.tsx)。首次安装可以使用自动生成的别名，后续任务与依赖安装命令使用实际目录名。
+青龙 2.20.2 的表单在修改链接或分支时会重新生成“唯一值”，该字段默认禁用，可通过支持 `alias` 参数的订阅 API 保留原元数据别名。[青龙表单实现](https://github.com/whyour/qinglong/blob/v2.20.2/src/pages/subscription/modal.tsx)。实际拉取目录仍根据仓库地址和分支生成，本仓库为 `cyuni1996_jdpro_main`。因此迁移原任务需要上述执行后同步，单独保留界面别名不足以保留任务路径。首次安装可以使用自动生成的目录和任务，无需同步到旧目录。
 
 以下命令用于手动拉取，会按仓库地址和分支生成目录名：
 

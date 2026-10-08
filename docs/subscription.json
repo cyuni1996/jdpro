@@ -7,5 +7,8 @@
   "blacklist": "backUp|(^|/)(tools|tests|docs|docker)/",
   "dependences": "(^|/)jd[^_]|USER|JD|(^|/)function/|sendNotify|(^|/)notify\\.py$|(^|/)utils/|(^|/)package(-lock)?\\.json$|(^|/)requirements\\.txt$",
   "extensions": "js py sh",
-  "note": "更新现有 jd 订阅，保留原定时设置和别名。青龙 2.20.2 表单会自动重新生成禁用的别名字段；保留旧别名可通过支持 alias 参数的订阅 API 更新。文件后缀使用空格分隔。"
+  "note": "维护原有 jd 订阅和任务。青龙 2.20.2 实际拉取目录根据仓库地址和分支生成，界面别名用于日志等元数据；执行后同步到旧任务目录。文件后缀使用空格分隔。",
+  "autoAddCron": false,
+  "autoDelCron": false,
+  "sub_after": "python3 /ql/data/repo/cyuni1996_jdpro_main/tools/deploy_qinglong.py /ql/data/scripts/6dylan6_jdpro --install-deps"
 }
