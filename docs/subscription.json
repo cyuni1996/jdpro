@@ -1,0 +1,11 @@
+{
+  "name": "jd",
+  "url": "https://github.com/cyuni1996/jdpro.git",
+  "branch": "main",
+  "alias": "6dylan6_jdpro",
+  "whitelist": "^(jd_|jx_|jddj_)",
+  "blacklist": "backUp|^tools/|^tests/|^docs/|^docker/",
+  "dependences": "^jd[^_]|USER|JD|^function/|sendNotify|^notify\\.py$|^utils/|^package(-lock)?\\.json$|^requirements\\.txt$",
+  "extensions": "js|py|sh",
+  "note": "编辑现有 jd 订阅，保留原定时设置和别名。依赖文件规则追加了包清单及 Python 通知模块。"
+}
