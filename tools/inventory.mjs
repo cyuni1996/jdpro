@@ -16,7 +16,7 @@ for (const row of status.tasks) {
 function walk(dir) {
     return fs.readdirSync(path.join(root, dir), { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? walk(dir + '/' + entry.name) : [dir + '/' + entry.name]);
 }
-const files = [...tasks, 'jd_sharecode.sh', ...fs.readdirSync(root).filter(f => f.endsWith('.js') && !f.startsWith('jd_')), ...walk('function'), ...walk('utils')].sort();
+const files = [...tasks, 'jd_sharecode.sh', ...fs.readdirSync(root).filter(f => (f.endsWith('.js') && !f.startsWith('jd_')) || f.endsWith('.py')), ...walk('function'), ...walk('utils')].sort();
 const inventory = files.map(file => ({ file, kind: tasks.includes(file) ? 'task' : file === 'jd_sharecode.sh' ? 'sharecode-shell' : 'dependency',
     sha256: crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex'),
     validation: file === 'jd_sharecode.sh' ? 'bash -n；未执行缓存写入或清理' : tasks.includes(file) ? '见 status.json；语法及静态依赖检查' : '语法/静态依赖；运行路径需要对应任务证据' }));

@@ -1,6 +1,6 @@
 {
   "taskCount": 51,
-  "sourceCount": 131,
+  "sourceCount": 132,
   "files": [
     {
       "file": "JDJRValidator_Pure.js",
@@ -649,6 +649,12 @@
       "kind": "task",
       "sha256": "d73424b4bdbf5e475324f014e65265da5d361006a0cec692e52b18720b128bd4",
       "validation": "见 status.json；语法及静态依赖检查"
+    },
+    {
+      "file": "notify.py",
+      "kind": "dependency",
+      "sha256": "b45a59f509fc916fba54e0dd5255da91024ca2cb5ffeb1e3f5f727b5a971bd40",
+      "validation": "语法/静态依赖；运行路径需要对应任务证据"
     },
     {
       "file": "sendNotify.js",
