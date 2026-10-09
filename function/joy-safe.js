@@ -8,6 +8,15 @@ function pendingTasks(data) {
     return Array.isArray(data) ? data.filter(task => task && (task.taskFinished === false || Number(task.canDrawAwardNum) > 0)) : [];
 }
 
+function validatedTasks(env, response) {
+    if (response?.success === false || !Array.isArray(response?.data) || response.data.some(task => !task || typeof task.taskFinished !== 'boolean')) {
+        env.maintenanceUnknown = true;
+        env.maintenanceReason = '庄园任务列表响应不完整';
+        return [];
+    }
+    return pendingTasks(response.data);
+}
+
 async function selectTaskItemId(task, { details, runtime, random = Math.random }) {
     if (runtime?.state().stopped || !task) return null;
     if (typeof task.taskSourceUrl === 'string' && task.taskSourceUrl.trim()) return task.taskSourceUrl;
@@ -41,4 +50,4 @@ async function assignWorkers(joys, workers, { assign, refresh, log = () => {}, n
     }
     return { reason: '达到操作次数或时间上限', count: seen.size };
 }
-module.exports = { taskItems, pendingTasks, selectTaskItemId, assignWorkers };
+module.exports = { taskItems, pendingTasks, validatedTasks, selectTaskItemId, assignWorkers };

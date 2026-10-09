@@ -6,7 +6,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const { parse } = require('acorn');
 const { collectBeanDetails, formatBeanIncome } = require('../function/bean-statistics');
-const { taskItems, pendingTasks, selectTaskItemId, assignWorkers } = require('../function/joy-safe');
+const { taskItems, pendingTasks, validatedTasks, selectTaskItemId, assignWorkers } = require('../function/joy-safe');
 const { attachLegacy } = require('../function/jd-runtime');
 const now = () => Date.parse('2026-10-08T12:00:00+08:00');
 const row = (date, amount, eventMassage = '签到') => ({ date, amount, eventMassage });
@@ -109,6 +109,54 @@ test('legacy Joy task loop exits before processing the next task when the reques
         yOhx3Hg: [], lBW52K: () => 'taskList', console: { log: s => messages.push(s) } });
     await vm.runInContext('(async () => {' + source.slice(loop.start, loop.end) + '})()', context, { timeout: 100 });
     assert.equal(messages.length, 1); assert.match(messages[0], /结束剩余庄园任务/);
+});
+
+test('legacy Joy reports unknown after a failed query; only a known empty task list reports completion', () => {
+    const source = fs.readFileSync(path.join(__dirname, '../jd_joypark_task.js'), 'utf8');
+    const tree = parse(source, { ecmaVersion: 'latest' });
+    let loop;
+    function walk(n) { if (!n || typeof n !== 'object') return;
+        if (n.type === 'DoWhileStatement' && source.slice(n.start, n.end).includes('await VpcL9D')) loop = n;
+        for (const v of Object.values(n)) { if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === 'object') walk(v); } }
+    walk(tree); assert.ok(loop);
+    const guard = loop.body.body.find(n => n.type === 'IfStatement' && source.slice(n.start, n.end).includes('任务状态未知'));
+    const complete = loop.body.body.find(n => n.type === 'IfStatement' && source.slice(n.start, n.end).includes('console.log("全部任务已完成！")'));
+    const query = loop.body.body.find(n => n.type === 'ExpressionStatement' && source.slice(n.start, n.end).includes('await VpcL9D'));
+    assert.ok(query.end < guard.start && guard.end < complete.start);
+    for (const [unknown, stopped, tasks, expected] of [[true, false, [], '未知'], [false, true, [], '未知'], [false, false, null, '未知'], [false, false, [], '全部任务已完成'], [false, false, [{ id: 1 }], '待执行']]) {
+        const messages = [];
+        const context = vm.createContext({ $: { maintenanceUnknown: unknown, maintenanceReason: 'HTTP 403', taskList: tasks,
+            maintenanceRuntime: { state: () => ({ stopped }) } }, console: { log: v => messages.push(v) } });
+        vm.runInContext('do {' + source.slice(guard.start, guard.end) + source.slice(complete.start, complete.end) + 'console.log("待执行");} while(false)', context, { timeout: 100 });
+        assert.equal(messages.length, 1); assert.match(messages[0], new RegExp(expected));
+        if (expected === '未知') assert.doesNotMatch(messages[0], /^全部任务已完成/);
+    }
+});
+
+test('Joy keeps missing or malformed list data unknown while accepting a successful complete empty list', () => {
+    for (const response of [null, {}, { success: true, data: null }, { success: true, data: [null] }, { success: true, data: [{}] }, { success: false, data: [] }]) {
+        const env = {};
+        assert.deepEqual(validatedTasks(env, response), []);
+        assert.equal(env.maintenanceUnknown, true);
+    }
+    const env = {};
+    assert.deepEqual(validatedTasks(env, { success: true, data: [] }), []);
+    assert.equal(env.maintenanceUnknown, undefined);
+    assert.equal(validatedTasks(env, { success: true, data: [{ id: 1, taskFinished: false }] }).length, 1);
+});
+
+test('legacy Joy does not re-enter its query loop after request protection or an unknown response', () => {
+    const source = fs.readFileSync(path.join(__dirname, '../jd_joypark_task.js'), 'utf8');
+    const tree = parse(source, { ecmaVersion: 'latest' });
+    let condition;
+    function walk(n) { if (!n || typeof n !== 'object') return;
+        if (n.type === 'DoWhileStatement' && source.slice(n.start, n.end).includes('await VpcL9D')) condition = n.test;
+        for (const v of Object.values(n)) { if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === 'object') walk(v); } }
+    walk(tree); assert.ok(condition);
+    for (const [unknown, stopped] of [[true, false], [false, true]]) {
+        const context = vm.createContext({ $: { maintenanceUnknown: unknown, maintenanceRuntime: { state: () => ({ stopped }) } } });
+        assert.equal(vm.runInContext(source.slice(condition.start, condition.end), context, { timeout: 100 }), false);
+    }
 });
 
 test('legacy asset report suppresses initialized zeroes and does not overwrite cache after query failure', () => {
