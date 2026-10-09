@@ -8,6 +8,20 @@ function pendingTasks(data) {
     return Array.isArray(data) ? data.filter(task => task && (task.taskFinished === false || Number(task.canDrawAwardNum) > 0)) : [];
 }
 
+async function selectTaskItemId(task, { details, runtime, random = Math.random }) {
+    if (runtime?.state().stopped || !task) return null;
+    if (typeof task.taskSourceUrl === 'string' && task.taskSourceUrl.trim()) return task.taskSourceUrl;
+    let items;
+    try { items = task.taskItemList == null ? await details() : task.taskItemList; }
+    catch { return null; }
+    if (runtime?.state().stopped || !Array.isArray(items)) return null;
+    const ids = items.map(item => item?.pipeExt?.itemId).filter(id =>
+        (typeof id === 'string' && id.trim().length > 0) || (typeof id === 'number' && Number.isFinite(id)));
+    if (!ids.length) return null;
+    const sample = random();
+    return ids[Math.floor((Number.isFinite(sample) && sample >= 0 && sample < 1 ? sample : 0) * ids.length)];
+}
+
 async function assignWorkers(joys, workers, { assign, refresh, log = () => {}, now = Date.now, maxAssignments = 20, maxDurationMs = 120000 }) {
     const started = now(), seen = new Set();
     for (let count = 0; count < maxAssignments && now() - started < maxDurationMs; count++) {
@@ -27,4 +41,4 @@ async function assignWorkers(joys, workers, { assign, refresh, log = () => {}, n
     }
     return { reason: '达到操作次数或时间上限', count: seen.size };
 }
-module.exports = { taskItems, pendingTasks, assignWorkers };
+module.exports = { taskItems, pendingTasks, selectTaskItemId, assignWorkers };

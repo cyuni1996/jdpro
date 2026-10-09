@@ -239,7 +239,7 @@
     {
       "file": "function/joy-safe.js",
       "kind": "dependency",
-      "sha256": "863030ddb54f40efbdb77e00558b61e75b5df75cc85cfa88256e086aeefb0d8e",
+      "sha256": "d24d950848f60d1d0ce864f012a80808cb34ee8e41ab9624b6f9ad8668d4c778",
       "validation": "语法/静态依赖；运行路径需要对应任务证据"
     },
     {
@@ -485,7 +485,7 @@
     {
       "file": "jd_joypark_task.js",
       "kind": "task",
-      "sha256": "68b58939f2655a90852ba1f7291b6047b0ea0085e3c1f60853d0d8ff826f0e19",
+      "sha256": "66743656c52613c3bbf3eecf13cefa6aba27e5f5d6c324b76e7f60770905bfa3",
       "validation": "见 status.json；语法及静态依赖检查"
     },
     {

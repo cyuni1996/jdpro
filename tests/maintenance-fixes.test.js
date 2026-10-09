@@ -6,7 +6,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const { parse } = require('acorn');
 const { collectBeanDetails, formatBeanIncome } = require('../function/bean-statistics');
-const { taskItems, pendingTasks, assignWorkers } = require('../function/joy-safe');
+const { taskItems, pendingTasks, selectTaskItemId, assignWorkers } = require('../function/joy-safe');
 const { attachLegacy } = require('../function/jd-runtime');
 const now = () => Date.parse('2026-10-08T12:00:00+08:00');
 const row = (date, amount, eventMassage = '签到') => ({ date, amount, eventMassage });
@@ -53,6 +53,62 @@ test('Joy stops unchanged states, unsuccessful moves and request budgets', async
     assert.equal(calls, 1); assert.match(r.reason, /状态未变化/);
     assert.match((await assignWorkers(joys, workers, { assign: async () => ({ code: 403 }), refresh: async () => null })).reason, /未明确成功/);
     assert.match((await assignWorkers(joys, workers, { maxAssignments: 0, assign: async () => {}, refresh: async () => null })).reason, /上限/);
+});
+
+test('Joy selects only a valid item and skips empty or malformed detail responses', async () => {
+    const valid = [{ pipeExt: { itemId: 'first' } }, { pipeExt: { itemId: 'second' } }];
+    assert.equal(await selectTaskItemId({ taskItemList: valid }, { random: () => 0.9 }), 'second');
+    assert.equal(await selectTaskItemId({}, { details: async () => valid, random: () => 0 }), 'first');
+    let calls = 0;
+    assert.equal(await selectTaskItemId({ taskSourceUrl: 'https://joypark.jd.com/' }, { details: async () => { calls++; } }), 'https://joypark.jd.com/');
+    for (const items of [[], null, {}, [null, {}, { pipeExt: null }, { pipeExt: {} }, { pipeExt: { itemId: '' } }]]) {
+        assert.equal(await selectTaskItemId({}, { details: async () => items }), null);
+    }
+    assert.equal(await selectTaskItemId({ taskItemList: [] }, { details: async () => { calls++; } }), null);
+    assert.equal(await selectTaskItemId({}, { details: async () => { throw new Error('timeout'); } }), null);
+    assert.equal(calls, 0);
+});
+
+test('Joy does not reuse detail items after an authentication, 403, risk or ended response', async () => {
+    for (const body of [{ code: 1001 }, { status: 403 }, { msg: '活动太火爆' }, { msg: '活动已结束' }, null]) {
+        let stopped = false, calls = 0;
+        const runtime = { state: () => ({ stopped }) };
+        const id = await selectTaskItemId({}, { runtime, details: async () => { calls++; stopped = true; return taskItems(body); } });
+        assert.equal(id, null); assert.equal(calls, 1);
+        assert.equal(await selectTaskItemId({ taskSourceUrl: 'stale' }, { runtime, details: async () => { calls++; } }), null);
+        assert.equal(calls, 1);
+    }
+});
+
+test('legacy Joy replays a 403 detail response without reading pipeExt or making another request', async () => {
+    const source = fs.readFileSync(path.join(__dirname, '../jd_joypark_task.js'), 'utf8');
+    const tree = parse(source, { ecmaVersion: 'latest' });
+    const detail = tree.body.find(n => n.type === 'FunctionDeclaration' && n.id.name === 'vt4onL');
+    let requests = 0;
+    const env = { done() {}, taskDetailList: [{ pipeExt: { itemId: 'stale' } }] };
+    attachLegacy(env, { transport: async () => { requests++; return { status: 403, text: async () => '{}' }; } });
+    const context = vm.createContext({ $: env, URLSearchParams, require: p => { assert.equal(p, './function/joy-safe'); return require('../function/joy-safe'); },
+        PVdgdI: () => ({ url: 'https://api.m.jd.com/client.action' }) });
+    vm.runInContext(source.slice(detail.start, detail.end), context, { timeout: 100 });
+    const result = await selectTaskItemId({}, { details: () => context.vt4onL(1, 'BROWSE'), runtime: env.maintenanceRuntime });
+    assert.equal(result, null); assert.equal(env.taskDetailList.length, 0); assert.equal(requests, 1);
+    await context.vt4onL(2, 'BROWSE');
+    assert.equal(requests, 1);
+    env.done();
+});
+
+test('legacy Joy task loop exits before processing the next task when the request path is stopped', async () => {
+    const source = fs.readFileSync(path.join(__dirname, '../jd_joypark_task.js'), 'utf8');
+    const tree = parse(source, { ecmaVersion: 'latest' });
+    let loop;
+    function walk(n) { if (!n || typeof n !== 'object') return; if (n.type === 'ForOfStatement' && n.left.declarations?.[0]?.id.name === 'FYc_ay') loop = n;
+        for (const v of Object.values(n)) { if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === 'object') walk(v); } }
+    walk(tree); assert.ok(loop);
+    const messages = [];
+    const context = vm.createContext({ $: { taskList: [{ id: 1 }, { id: 2 }], maintenanceRuntime: { state: () => ({ stopped: true }) } },
+        yOhx3Hg: [], lBW52K: () => 'taskList', console: { log: s => messages.push(s) } });
+    await vm.runInContext('(async () => {' + source.slice(loop.start, loop.end) + '})()', context, { timeout: 100 });
+    assert.equal(messages.length, 1); assert.match(messages[0], /结束剩余庄园任务/);
 });
 
 test('legacy asset report suppresses initialized zeroes and does not overwrite cache after query failure', () => {

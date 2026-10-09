@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-08",
+  "checkedAt": "2026-10-09",
   "newVerifiedActivities": [],
   "sources": [
     {
@@ -22,5 +22,11 @@
       "enabled": false,
       "reason": "官方规则已到期；购买及公开评价不在本轮实测范围。"
     }
-  ]
+  ],
+  "lastDiscovery": {
+    "date": "2026-10-09",
+    "entry": "https://m.jd.com/",
+    "result": "官方移动首页及带日期规则检索未获得可确认的新免费日常活动；庄园公开首页在网页工具中不可访问。",
+    "qualificationAndLiveBusiness": "尚无新的规则日期、账号资格与实时业务成功证据；不新增或启用脚本。"
+  }
 }
