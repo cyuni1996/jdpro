@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-09T22:19:00+08:00",
+  "checkedAt": "2026-10-10T10:15:00+08:00",
   "evidenceNotice": "51 项均有检查记录；今日只更新新增日志或修复路径，其余保留原检查日期。可用只指记录 scope 中明示动作成功；辅助模块审阅、未覆盖业务及凭据旧入口授权另列。原始日志和账号仅留本地。",
   "tasks": [
     {
@@ -34,9 +34,9 @@
       "group": "maintained",
       "date": "2026-06-06-06-06-00",
       "afterCookie": false,
-      "reason": "最近日志 6 月 6 日：接口 1 失败后尝试接口 2，无明确有效结论。",
-      "next": "不能用此旧结果判断当前 CK；该脚本还会修改青龙变量启用状态，未运行复测。",
-      "category": "未验证",
+      "reason": "当前青龙配置的单账号只读用户信息接口 retcode=0，认证成功；未运行会修改青龙变量状态的旧检测入口。",
+      "next": "以各接口实时响应判断认证；旧检测入口和变量状态修改仍仅审阅与模拟。",
+      "category": "部分可用",
       "scope": "只读与模拟",
       "authentication": "JD_COOKIE（pt_key / pt_pin）",
       "requiredVariables": [
@@ -80,6 +80,21 @@
           "code": "1001",
           "businessVerified": false,
           "requestIssued": true
+        },
+        {
+          "id": "userinfo",
+          "scripts": [
+            "jd_CheckCK.js",
+            "jd_bean_change.js"
+          ],
+          "scope": "只读账号信息；不能推广为所有活动认证结论",
+          "time": "2026-10-10T02:06:43.881Z",
+          "category": "未验证",
+          "reason": "接口响应成功；业务结果另行验证",
+          "status": 200,
+          "code": "0",
+          "businessVerified": false,
+          "requestIssued": true
         }
       ],
       "credentialedLegacyRunAllowed": false,
@@ -116,7 +131,7 @@
       "date": "2026-10-09-19-44-01",
       "afterCookie": true,
       "reason": "19:44 资产查询受阻；真实运行输出资产统计未知，并明确本次不更新资产缓存。",
-      "next": "未知值及缓存保护已有部署后运行证据；资产接口业务仍受阻。",
+      "next": "当前账号信息查询成功，但资产全量查询仍缺少成功证据；保留未知值和原缓存，继续审阅其余查询路径。",
       "category": "接口异常",
       "scope": "只读工具",
       "authentication": "JD_COOKIE（pt_key / pt_pin）",
@@ -173,6 +188,21 @@
           "code": "1001",
           "businessVerified": false,
           "requestIssued": true
+        },
+        {
+          "id": "userinfo",
+          "scripts": [
+            "jd_CheckCK.js",
+            "jd_bean_change.js"
+          ],
+          "scope": "只读账号信息；不能推广为所有活动认证结论",
+          "time": "2026-10-10T02:06:43.881Z",
+          "category": "未验证",
+          "reason": "接口响应成功；业务结果另行验证",
+          "status": 200,
+          "code": "0",
+          "businessVerified": false,
+          "requestIssued": true
         }
       ],
       "credentialedLegacyRunAllowed": false,
@@ -184,8 +214,8 @@
       "group": "maintained",
       "date": "2026-10-08-23-28-42",
       "afterCookie": true,
-      "reason": "修复后的青龙查询返回 HTTP 403，今日及全部账号收入均显示未知，没有默认零值。",
-      "next": "查询保护已验证；只复查响应发生变化的京豆明细路径。",
+      "reason": "当前凭据和移动浏览器请求的京豆首页明细成功；原统计请求配置的完整查询 HTTP 403，返回未知，不能据首页成功认定完整统计恢复。",
+      "next": "离线核对浏览器与旧请求上下文差异；当前完整统计受阻，本轮不重复 403 请求。",
       "category": "接口异常",
       "scope": "只读工具",
       "authentication": "JD_COOKIE（pt_key / pt_pin）",
@@ -225,6 +255,29 @@
           "code": null,
           "businessVerified": false,
           "requestIssued": true
+        },
+        {
+          "id": "bean-details",
+          "scripts": [
+            "jd_bean_info.js"
+          ],
+          "scope": "只读京豆明细首页；不是完整统计或领豆证据",
+          "time": "2026-10-10T02:06:46.053Z",
+          "category": "未验证",
+          "reason": "接口响应成功；业务结果另行验证",
+          "status": 200,
+          "code": "0",
+          "businessVerified": false,
+          "requestIssued": true
+        },
+        {
+          "id": "bean-complete-query",
+          "time": "2026-10-10T02:08:09.801Z",
+          "scope": "单账号只读完整京豆统计；不领取、不通知",
+          "category": "接口异常",
+          "reason": "HTTP 403；不能据此判断活动结束",
+          "requests": 1,
+          "businessVerified": false
         }
       ],
       "verification": "修复后实际只读查询仍受阻，正确显示今日收入与总收入未知；没有宣称统计接口恢复。",
@@ -290,9 +343,9 @@
       "file": "jd_deliverySign_sign.js",
       "name": "天天领豆",
       "group": "maintained",
-      "date": "2026-10-09-13-25-00",
+      "date": "2026-10-10-00-25-01",
       "afterCookie": true,
-      "reason": "13:25 返回您已经签到过了；当天 00:25 的日志已确认领取 1 京豆。",
+      "reason": "00:25 既有定时日志明确报告获得 1 京豆；另一项获得 0 京豆，不计作新增奖励。",
       "next": "今日签到已完成；不要重复签到或将已签到误认为失效。",
       "category": "可用",
       "scope": "签到（当日领取日志验证）；辅助模块仍待完整审阅",
@@ -304,7 +357,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": true,
-      "evidenceScope": "2026-10-09 22:19 检查青龙既有定时日志；未手动执行这些任务。仅明示的动作及奖励结果。",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [],
       "credentialedLegacyRunAllowed": false,
@@ -312,6 +365,13 @@
       "businessEvidence": [
         {
           "date": "2026-10-09-00-25-00",
+          "source": "青龙既有定时日志",
+          "action": "签到领取",
+          "reward": "1 京豆",
+          "maintenanceTriggered": false
+        },
+        {
+          "date": "2026-10-10-00-25-01",
           "source": "青龙既有定时日志",
           "action": "签到领取",
           "reward": "1 京豆",
@@ -399,7 +459,7 @@
       "file": "jd_dpqd_sign.js",
       "name": "批量店铺签到",
       "group": "maintained",
-      "date": "2026-10-08-23-59-58",
+      "date": "2026-10-09-23-59-58",
       "afterCookie": true,
       "reason": "23:59 仍缺少店铺签到 token，未执行签到。",
       "next": "缺少必要 token；配置有变化后再验证。",
@@ -416,7 +476,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": false,
-      "evidenceScope": "2026-10-09 检查青龙既有定时日志；仅明示的业务结果，不代表维护代理实测全部动作",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [],
       "credentialedLegacyRunAllowed": false,
@@ -452,9 +512,9 @@
       "file": "jd_dwapp.js",
       "name": "积分换话费",
       "group": "maintained",
-      "date": "2026-10-09-15-38-00",
+      "date": "2026-10-10-02-38-02",
       "afterCookie": true,
-      "reason": "15:38 提示今日已完成签到；兑换接口仍 HTTP 403。当天 02:38 签到获得 0.1 积分。",
+      "reason": "02:38 既有定时签到获得 0.1 积分，兑换仍 HTTP 403；维护代理没有执行兑换。",
       "next": "仅签到已验证；话费兑换仅只读与模拟。",
       "category": "部分可用",
       "scope": "只读与模拟（涉及兑换话费）",
@@ -466,7 +526,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": true,
-      "evidenceScope": "2026-10-09 22:19 检查青龙既有定时日志；未手动执行这些任务。仅明示的动作及奖励结果。",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [],
       "credentialedLegacyRunAllowed": false,
@@ -478,6 +538,13 @@
           "action": "签到",
           "reward": "0.1 积分",
           "maintenanceTriggered": false
+        },
+        {
+          "date": "2026-10-10-02-38-02",
+          "source": "青龙既有定时日志",
+          "action": "签到领取",
+          "reward": "0.1 积分",
+          "maintenanceTriggered": false
         }
       ]
     },
@@ -485,9 +552,9 @@
       "file": "jd_farmnew_ck_help.js",
       "name": "新农场CK顺序助力",
       "group": "maintained",
-      "date": "2026-10-09-10-12-00",
+      "date": "2026-10-10-05-12-01",
       "afterCookie": true,
-      "reason": "10:12 code 404 运行环境异常，未见助力成功响应。",
+      "reason": "05:12 code 404 运行环境异常，未见助力成功响应。",
       "next": "风控不反复重试，活动是否结束仍无证据；普通助力还需非本人有效目标。",
       "category": "接口异常",
       "scope": "普通助力（缺少非本人目标则待验证）",
@@ -499,7 +566,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": false,
-      "evidenceScope": "2026-10-09 22:19 检查青龙既有定时日志；未手动执行这些任务。仅明示的动作及奖励结果。",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [],
       "credentialedLegacyRunAllowed": false,
@@ -557,9 +624,9 @@
       "file": "jd_fruit_new.js",
       "name": "新农场任务",
       "group": "maintained",
-      "date": "2026-10-09-16-15-00",
+      "date": "2026-10-10-06-15-01",
       "afterCookie": true,
-      "reason": "16:15 农场初始化 code 404 运行环境异常，旧入口自行重试一次，未种植成功。",
+      "reason": "06:15 农场初始化 code 404 运行环境异常；旧入口自行重试一次，未确认种植成功。",
       "next": "继续离线审阅签名和辅助模块；完成审阅后限制风控重试。",
       "category": "接口异常",
       "scope": "日常动作待逐项确认",
@@ -571,7 +638,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": false,
-      "evidenceScope": "2026-10-09 22:19 检查青龙既有定时日志；未手动执行这些任务。仅明示的动作及奖励结果。",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [
         {
@@ -581,6 +648,20 @@
           ],
           "scope": "只读农场入口；不浇水、不领奖",
           "time": "2026-10-08T14:35:17.268Z",
+          "category": "接口异常",
+          "reason": "接口未返回成功状态",
+          "status": 200,
+          "code": "2",
+          "businessVerified": false,
+          "requestIssued": true
+        },
+        {
+          "id": "farm-home",
+          "scripts": [
+            "jd_fruit_new.js"
+          ],
+          "scope": "只读农场入口；不浇水、不领奖",
+          "time": "2026-10-10T02:06:48.105Z",
           "category": "接口异常",
           "reason": "接口未返回成功状态",
           "status": 200,
@@ -620,7 +701,7 @@
       "file": "jd_hssign.js",
       "name": "hs每日签到",
       "group": "maintained",
-      "date": "2026-10-09-08-15-01",
+      "date": "2026-10-10-08-15-01",
       "afterCookie": true,
       "reason": "08:15 既有定时日志明确报告领取成功 1 京豆。",
       "next": "签到路径已有实际领取日志；辅助模块传输审阅仍未完成，不新增凭据执行旧入口。",
@@ -634,7 +715,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": true,
-      "evidenceScope": "2026-10-09 检查青龙既有定时日志；仅明示的业务结果，不代表维护代理实测全部动作",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [],
       "credentialedLegacyRunAllowed": false,
@@ -646,6 +727,13 @@
           "action": "签到领取",
           "reward": "1 京豆",
           "maintenanceTriggered": false
+        },
+        {
+          "date": "2026-10-10-08-15-01",
+          "source": "青龙既有定时日志",
+          "action": "签到领取",
+          "reward": "1 京豆",
+          "maintenanceTriggered": false
         }
       ]
     },
@@ -653,10 +741,10 @@
       "file": "jd_ifdraw.js",
       "name": "IF任务抽奖合集",
       "group": "maintained",
-      "date": "2026-10-09-14-38-00",
+      "date": "2026-10-10-02-38-02",
       "afterCookie": true,
-      "reason": "14:38 多个入口反复 HTTP 403；只有浏览会场已完成提示，没有新奖励到账证据。",
-      "next": "仅只读与模拟；旧循环及辅助模块未完整审阅，不带凭据运行抽奖入口。",
+      "reason": "02:38 多个入口及浏览反复 HTTP 403，运行 281 秒；局部日志报告抽奖次数增加，但未确认奖励到账。",
+      "next": "先离线审阅全部传输和辅助模块，再限制风控后的继续请求与运行时长；抽奖仅只读/模拟。",
       "category": "接口异常",
       "scope": "日常动作待逐项确认",
       "authentication": "JD_COOKIE（pt_key / pt_pin）",
@@ -667,7 +755,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": false,
-      "evidenceScope": "2026-10-09 22:19 检查青龙既有定时日志；未手动执行这些任务。仅明示的动作及奖励结果。",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [],
       "credentialedLegacyRunAllowed": false,
@@ -757,10 +845,10 @@
       "file": "jd_joypark_task.js",
       "name": "汪汪庄园任务",
       "group": "maintained",
-      "date": "2026-10-09-13-38-00",
+      "date": "2026-10-10-08-38-01",
       "afterCookie": true,
-      "reason": "13:38 部署后浏览 HTTP 403，任务循环停止且无 pipeExt 异常；旧空列表判断仍误报全部任务已完成。",
-      "next": "本轮修复失败查询后的完成误报及外层重复查询；浏览业务尚未恢复。",
+      "reason": "08:38 签到领取 1.2 千万游戏币；浏览 HTTP 403 后停止，无 pipeExt 异常或完成误报。当前凭据的只读列表及详情查询成功，未执行浏览动作。",
+      "next": "签到及保护退出已有发布后的实际日志；只读详情有效，浏览业务仍缺少成功证据。继续审阅签名辅助模块。",
       "category": "部分可用",
       "scope": "日常动作待逐项确认",
       "authentication": "JD_COOKIE（pt_key / pt_pin）",
@@ -777,7 +865,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": true,
-      "evidenceScope": "2026-10-09 22:19 检查青龙既有定时日志；未手动执行这些任务。仅明示的动作及奖励结果。",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [
         "任务详情空响应返回空列表；请求限速和上限",
         "任务列表初始化为空数组，空数据不再读取 undefined.length",
@@ -820,6 +908,32 @@
           "requests": 2,
           "exception": false,
           "businessVerified": false
+        },
+        {
+          "id": "joy-tasks",
+          "scripts": [
+            "jd_joypark_task.js"
+          ],
+          "scope": "只读庄园任务列表；不做任务、不兑换",
+          "time": "2026-10-10T02:06:52.372Z",
+          "category": "未验证",
+          "reason": "接口响应成功；业务结果另行验证",
+          "status": 200,
+          "code": "0",
+          "businessVerified": false,
+          "requestIssued": true
+        },
+        {
+          "time": "2026-10-10T02:08:13.875Z",
+          "scope": "单账号只读庄园列表和详情；不做任务、不领奖",
+          "category": "未验证",
+          "reason": "接口响应成功；业务结果另行验证",
+          "validItem": true,
+          "exception": false,
+          "requests": 2,
+          "stopped": false,
+          "businessVerified": false,
+          "id": "joy-current-detail"
         }
       ],
       "credentialedLegacyRunAllowed": false,
@@ -827,6 +941,13 @@
       "businessEvidence": [
         {
           "date": "2026-10-09-08-38-01",
+          "source": "青龙既有定时日志",
+          "action": "签到领取",
+          "reward": "1.2 千万游戏币",
+          "maintenanceTriggered": false
+        },
+        {
+          "date": "2026-10-10-08-38-01",
           "source": "青龙既有定时日志",
           "action": "签到领取",
           "reward": "1.2 千万游戏币",
@@ -936,9 +1057,9 @@
       "file": "jd_newfarmlottery.js",
       "name": "新农场幸运转盘",
       "group": "maintained",
-      "date": "2026-10-09-15-53-00",
+      "date": "2026-10-10-07-53-01",
       "afterCookie": true,
-      "reason": "15:53 农场抽奖初始化 HTTP 403，未见抽奖成功证据。",
+      "reason": "07:53 农场抽奖初始化 HTTP 403，未见抽奖成功证据。",
       "next": "抽奖仅只读与模拟；不把 403 当活动结束。",
       "category": "接口异常",
       "scope": "日常动作待逐项确认",
@@ -950,7 +1071,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": false,
-      "evidenceScope": "2026-10-09 22:19 检查青龙既有定时日志；未手动执行这些任务。仅明示的动作及奖励结果。",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [],
       "credentialedLegacyRunAllowed": false,
@@ -984,9 +1105,9 @@
       "file": "jd_plantBean.js",
       "name": "种豆得豆任务",
       "group": "maintained",
-      "date": "2026-10-09-21-21-01",
+      "date": "2026-10-10-09-21-01",
       "afterCookie": true,
-      "reason": "21:21 主页 code 411，活动太火爆；未见种植成功响应。",
+      "reason": "09:21 种豆主页 code 411 活动火爆，未见种植成功响应；已核对独立任务日志，未串用互助日志。",
       "next": "风控不反复重试；签名路径完整审阅后再验证。",
       "category": "接口异常",
       "scope": "日常动作待逐项确认",
@@ -998,7 +1119,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": false,
-      "evidenceScope": "2026-10-09 22:19 检查青龙既有定时日志；未手动执行这些任务。仅明示的动作及奖励结果。",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [
         {
@@ -1015,6 +1136,21 @@
           "code": "1",
           "businessVerified": false,
           "requestIssued": true
+        },
+        {
+          "id": "plant-home",
+          "scripts": [
+            "jd_plantBean.js",
+            "jd_plantBean_help.js"
+          ],
+          "scope": "只读种豆入口；不助力、不领取",
+          "time": "2026-10-10T02:06:50.153Z",
+          "category": "接口异常",
+          "reason": "接口未返回成功状态",
+          "status": 200,
+          "code": "1",
+          "businessVerified": false,
+          "requestIssued": true
         }
       ],
       "credentialedLegacyRunAllowed": false,
@@ -1024,9 +1160,9 @@
       "file": "jd_plantBean_help.js",
       "name": "种豆得豆互助",
       "group": "maintained",
-      "date": "2026-10-09-15-22-00",
+      "date": "2026-10-10-05-22-01",
       "afterCookie": true,
-      "reason": "15:22 仅提示不能给自己助力，没有非本人助力成功证据。",
+      "reason": "05:22 仅提示不能给自己助力，没有有效非本人助力目标或成功证据。",
       "next": "需要有效非本人目标才能验证普通助力。",
       "category": "未验证",
       "scope": "普通助力（缺少非本人目标则待验证）",
@@ -1038,7 +1174,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": false,
-      "evidenceScope": "2026-10-09 22:19 检查青龙既有定时日志；未手动执行这些任务。仅明示的动作及奖励结果。",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [
         {
@@ -1049,6 +1185,21 @@
           ],
           "scope": "只读种豆入口；不助力、不领取",
           "time": "2026-10-08T14:35:19.312Z",
+          "category": "接口异常",
+          "reason": "接口未返回成功状态",
+          "status": 200,
+          "code": "1",
+          "businessVerified": false,
+          "requestIssued": true
+        },
+        {
+          "id": "plant-home",
+          "scripts": [
+            "jd_plantBean.js",
+            "jd_plantBean_help.js"
+          ],
+          "scope": "只读种豆入口；不助力、不领取",
+          "time": "2026-10-10T02:06:50.153Z",
           "category": "接口异常",
           "reason": "接口未返回成功状态",
           "status": 200,
@@ -1178,9 +1329,9 @@
       "file": "jd_signbeanact_.js",
       "name": "天天领豆",
       "group": "maintained",
-      "date": "2026-10-09-07-38-01",
+      "date": "2026-10-10-07-38-01",
       "afterCookie": true,
-      "reason": "07:38 返回 code 1714002：队伍有点长，等下再来看看吧；没有领豆成功证据。",
+      "reason": "07:38 code 1714002 队伍有点长；没有领豆成功证据。",
       "next": "排队响应不能判作活动结束；继续审阅请求参数和签名，不反复重试。",
       "category": "接口异常",
       "scope": "日常动作待逐项确认",
@@ -1192,7 +1343,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": false,
-      "evidenceScope": "2026-10-09 检查青龙既有定时日志；仅明示的业务结果，不代表维护代理实测全部动作",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [],
       "credentialedLegacyRunAllowed": false,
@@ -1250,9 +1401,9 @@
       "file": "jd_ttgd.js",
       "name": "天天刮京豆",
       "group": "maintained",
-      "date": "2026-10-09-15-21-00",
+      "date": "2026-10-10-04-21-01",
       "afterCookie": true,
-      "reason": "15:21 仍提示队伍有点长，等下再来看看吧，没有新奖励证据。",
+      "reason": "04:21 提示队伍有点长，等下再来看看吧；没有新奖励证据。",
       "next": "仅只读与模拟；排队提示不能判活动结束。",
       "category": "接口异常",
       "scope": "日常动作待逐项确认",
@@ -1264,7 +1415,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": false,
-      "evidenceScope": "2026-10-09 22:19 检查青龙既有定时日志；未手动执行这些任务。仅明示的动作及奖励结果。",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [],
       "credentialedLegacyRunAllowed": false,
@@ -1478,9 +1629,9 @@
       "file": "jd_xsjx.js",
       "name": "限时京喜",
       "group": "maintained",
-      "date": "2026-10-09-19-38-01",
+      "date": "2026-10-10-07-38-01",
       "afterCookie": true,
-      "reason": "19:38 获取任务返回活动火爆，未见奖励成功。",
+      "reason": "07:38 获取任务返回活动火爆，未见奖励成功。",
       "next": "保持接口限制记录，不重复风控请求。",
       "category": "接口异常",
       "scope": "日常动作待逐项确认",
@@ -1492,7 +1643,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": false,
-      "evidenceScope": "2026-10-09 22:19 检查青龙既有定时日志；未手动执行这些任务。仅明示的动作及奖励结果。",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [],
       "credentialedLegacyRunAllowed": false,
@@ -1502,7 +1653,7 @@
       "file": "jd_yssign.js",
       "name": "ys每日签到",
       "group": "maintained",
-      "date": "2026-10-09-09-20-01",
+      "date": "2026-10-10-09-20-01",
       "afterCookie": true,
       "reason": "09:20 既有定时日志明确报告领取成功 1 京豆。",
       "next": "签到路径已有实际领取日志；辅助模块传输审阅仍未完成，不新增凭据执行旧入口。",
@@ -1518,7 +1669,7 @@
       "scheduled": true,
       "disabled": false,
       "businessVerified": true,
-      "evidenceScope": "2026-10-09 检查青龙既有定时日志；仅明示的业务结果，不代表维护代理实测全部动作",
+      "evidenceScope": "2026-10-10 检查青龙既有定时日志；未手动执行旧入口，只采纳明示动作及奖励结果。",
       "repairs": [],
       "probes": [],
       "credentialedLegacyRunAllowed": false,
@@ -1526,6 +1677,13 @@
       "businessEvidence": [
         {
           "date": "2026-10-09-09-20-01",
+          "source": "青龙既有定时日志",
+          "action": "签到领取",
+          "reward": "1 京豆",
+          "maintenanceTriggered": false
+        },
+        {
+          "date": "2026-10-10-09-20-01",
           "source": "青龙既有定时日志",
           "action": "签到领取",
           "reward": "1 京豆",
@@ -1556,6 +1714,21 @@
       "probes": [],
       "credentialedLegacyRunAllowed": false,
       "legacyRunBlocker": "未完成所有混淆辅助模块和外部服务的操作/凭据传输审阅；本轮不带凭据批量执行旧入口。"
+    }
+  ],
+  "dependencyReviews": [
+    {
+      "file": "function/krgetSign.js",
+      "checkedAt": "2026-10-10",
+      "sha256": "c188f5919e30f287d22177b96860861f30a8392bd0b50421fa61be89f674dd90",
+      "scope": "纯字符串解码与签名传输分支离线审阅；没有执行网络调用",
+      "state": "部分审阅",
+      "findings": [
+        "默认向两个第三方 HTTP 签名地址发送 functionId 和序列化业务 body；自定义地址来自 JD_SIGN_KRAPI。",
+        "该模块没有显式 Cookie 请求头，但调用者业务 body 和代理、重定向路径尚未完成凭据传输审阅。",
+        "直接引用者 function/krgetToken.js 尚未完整审阅。"
+      ],
+      "credentialedRunAllowed": false
     }
   ]
 }

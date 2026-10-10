@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-09",
+  "checkedAt": "2026-10-10",
   "newVerifiedActivities": [],
   "sources": [
     {
@@ -21,12 +21,23 @@
       "state": "活动结束",
       "enabled": false,
       "reason": "官方规则已到期；购买及公开评价不在本轮实测范围。"
+    },
+    {
+      "name": "签到赢好礼",
+      "url": "https://pro.m.jd.com/mall/active/gFkdsmZNGWwvzFTRT76janC1ThJ/index.html",
+      "activityId": "gFkdsmZNGWwvzFTRT76janC1ThJ",
+      "start": null,
+      "end": null,
+      "state": "未验证",
+      "enabled": false,
+      "reason": "搜索标题与当前页面内容不一致；当前仅取得商品展示，没有签到规则日期、账号资格或实时业务验证。不能据搜索标题认定新活动。"
     }
   ],
   "lastDiscovery": {
-    "date": "2026-10-09",
+    "date": "2026-10-10",
     "entry": "https://m.jd.com/",
-    "result": "官方移动首页及带日期规则检索未获得可确认的新免费日常活动；庄园公开首页在网页工具中不可访问。",
-    "qualificationAndLiveBusiness": "尚无新的规则日期、账号资格与实时业务成功证据；不新增或启用脚本。"
+    "result": "官方移动首页及活动域名检索发现一条待核实入口；没有获得可验证的新免费日常活动。",
+    "candidateEntry": "https://pro.m.jd.com/mall/active/gFkdsmZNGWwvzFTRT76janC1ThJ/index.html",
+    "qualificationAndLiveBusiness": "新增候选仅作为未验证记录去重；起止日期和账号资格不足，不创建或启用脚本。"
   }
 }
