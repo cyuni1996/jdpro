@@ -17,6 +17,13 @@ function validatedTasks(env, response) {
     return pendingTasks(response.data);
 }
 
+// The legacy task endpoint acknowledges completion with code=0. Failed,
+// missing or contradictory responses never authorize a follow-up reward call.
+function canClaimTaskReward(env, response) {
+    return !env.maintenanceUnknown && !env.maintenanceRuntime?.state().stopped &&
+        response?.success !== false && response?.code != null && String(response.code) === '0';
+}
+
 async function selectTaskItemId(task, { details, runtime, random = Math.random }) {
     if (runtime?.state().stopped || !task) return null;
     if (typeof task.taskSourceUrl === 'string' && task.taskSourceUrl.trim()) return task.taskSourceUrl;
@@ -50,4 +57,4 @@ async function assignWorkers(joys, workers, { assign, refresh, log = () => {}, n
     }
     return { reason: '达到操作次数或时间上限', count: seen.size };
 }
-module.exports = { taskItems, pendingTasks, validatedTasks, selectTaskItemId, assignWorkers };
+module.exports = { taskItems, pendingTasks, validatedTasks, canClaimTaskReward, selectTaskItemId, assignWorkers };

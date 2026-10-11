@@ -111,6 +111,67 @@ test('legacy Joy task loop exits before processing the next task when the reques
     assert.equal(messages.length, 1); assert.match(messages[0], /结束剩余庄园任务/);
 });
 
+test('legacy Joy sign branch never claims a reward or processes the next task after a failed acknowledgement', async () => {
+    const source = fs.readFileSync(path.join(__dirname, '../jd_joypark_task.js'), 'utf8');
+    const tree = parse(source, { ecmaVersion: 'latest' });
+    let branch;
+    function walk(n) {
+        if (!n || typeof n !== 'object') return;
+        if (n.type === 'IfStatement' && n.consequent.type === 'BlockStatement' &&
+            n.consequent.body.some(x => x.type === 'VariableDeclaration' && x.declarations[0].id.name === 'maintenanceSignResult')) branch = n;
+        for (const v of Object.values(n)) { if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === 'object') walk(v); }
+    }
+    walk(tree); assert.ok(branch);
+    const start = branch.consequent.body.findIndex(n => n.type === 'VariableDeclaration' && n.declarations[0].id.name === 'maintenanceSignResult');
+    const action = branch.consequent.body.slice(start).map(n => source.slice(n.start, n.end)).join('\n');
+    const responses = [
+        [200, '{"code":2018,"success":false}'], [200, '{}'], [200, '{"code":0,"success":false}'],
+        [200, '{"code":1001}'], [401, '{}'], [403, '{}'],
+        [200, '{"msg":"活动太火爆"}'], [200, '{"msg":"活动已结束"}'], [200, 'not json'],
+        [200, '{"code":2018,"success":true}'], [200, '{"code":0,"success":true}', 2],
+        [null, 'timeout'],
+    ];
+    for (const [status, body, expectedRewards = 0] of responses) {
+        let requests = 0, actions = 0, rewards = 0;
+        const env = { done() {} };
+        attachLegacy(env, { transport: async () => { requests++; if (body === 'timeout') { const error = new Error('timeout'); error.name = 'TimeoutError'; throw error; } return { status, text: async () => body }; } });
+        const values = []; values[0x5b] = 'id'; values[0x5e] = 'taskType'; values[0x58] = '';
+        values[0x5c] = 'log'; values[0x5d] = 'taskName';
+        const context = vm.createContext({ $: env, yOhx3Hg: values, hXBVTr: key => key,
+            console: { log() {} }, require: p => { assert.equal(p, './function/joy-safe'); return require('../function/joy-safe'); },
+            rbjJh_: async () => { actions++; return new Promise(resolve => env.post({ url: 'https://api.m.jd.com/client.action' }, (_error, _res, text) => { try { resolve(JSON.parse(text)); } catch { resolve(null); } })); },
+            WCwj6_: async () => { rewards++; } });
+        await vm.runInContext('(async () => { for (const FYc_ay of [{id:1,taskType:"SIGN"},{id:2,taskType:"SIGN"}]) {' + action + '} })()', context, { timeout: 100 });
+        assert.equal(actions, expectedRewards || 1); assert.equal(requests, body === 'timeout' ? 2 : expectedRewards || 1);
+        assert.equal(rewards, expectedRewards);
+        assert.equal(Boolean(env.maintenanceUnknown), !expectedRewards); env.done();
+    }
+});
+
+test('Joy reward guard accepts a code-zero acknowledgement and rejects unknown or stopped task state', () => {
+    const { canClaimTaskReward } = require('../function/joy-safe');
+    const active = { maintenanceRuntime: { state: () => ({ stopped: false }) } };
+    assert.equal(canClaimTaskReward(active, { code: 0, success: true }), true);
+    assert.equal(canClaimTaskReward(active, { code: '0' }), true);
+    for (const response of [null, {}, 'not json', { code: 0, success: false }, { code: 2018 }, { code: 2018, success: true }]) {
+        assert.equal(canClaimTaskReward(active, response), false);
+    }
+    assert.equal(canClaimTaskReward({ ...active, maintenanceUnknown: true }, { code: 0 }), false);
+    assert.equal(canClaimTaskReward({ maintenanceRuntime: { state: () => ({ stopped: true }) } }, { code: 0 }), false);
+});
+
+test('legacy Joy skips signing and reward helpers when an earlier business response remains unknown', async () => {
+    const source = fs.readFileSync(path.join(__dirname, '../jd_joypark_task.js'), 'utf8');
+    const tree = parse(source, { ecmaVersion: 'latest' });
+    const context = vm.createContext({ $: { maintenanceUnknown: true, maintenanceRuntime: { state: () => ({ stopped: false }) } } });
+    for (const name of ['rbjJh_', 'WCwj6_']) {
+        const fn = tree.body.find(n => n.type === 'FunctionDeclaration' && n.id.name === name);
+        vm.runInContext(source.slice(fn.start, fn.end), context, { timeout: 100 });
+        const result = await context[name](1, 'SIGN', '', 'activities_platform');
+        assert.equal(result.code, 'MAINTENANCE_STOP');
+    }
+});
+
 test('legacy Joy reports unknown after a failed query; only a known empty task list reports completion', () => {
     const source = fs.readFileSync(path.join(__dirname, '../jd_joypark_task.js'), 'utf8');
     const tree = parse(source, { ecmaVersion: 'latest' });

@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-10",
+  "checkedAt": "2026-10-11",
   "newVerifiedActivities": [],
   "sources": [
     {
@@ -34,10 +34,10 @@
     }
   ],
   "lastDiscovery": {
-    "date": "2026-10-10",
+    "date": "2026-10-11",
     "entry": "https://m.jd.com/",
-    "result": "官方移动首页及活动域名检索发现一条待核实入口；没有获得可验证的新免费日常活动。",
+    "result": "官方移动首页和活动域名规则检索没有新增可核实的免费日常活动；既有签到候选入口仅显示京东验证。",
     "candidateEntry": "https://pro.m.jd.com/mall/active/gFkdsmZNGWwvzFTRT76janC1ThJ/index.html",
-    "qualificationAndLiveBusiness": "新增候选仅作为未验证记录去重；起止日期和账号资格不足，不创建或启用脚本。"
+    "qualificationAndLiveBusiness": "候选规则日期与账号资格仍不足；当前认证阻塞，不进行带凭据活动试跑，不创建或启用脚本。"
   }
 }
