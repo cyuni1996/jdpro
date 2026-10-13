@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-12T02:07:34.112987+00:00",
+  "checkedAt": "2026-10-13T02:10:53.597013+00:00",
   "evidenceNotice": "51 项均有检查记录；今日只更新新增日志或修复路径，其余保留原检查日期。可用只指记录 scope 中明示动作成功；辅助模块审阅、未覆盖业务及凭据旧入口授权另列。原始日志和账号仅留本地。",
   "tasks": [
     {
@@ -1765,16 +1765,17 @@
     },
     {
       "file": "function/krgetToken.js",
-      "checkedAt": "2026-10-11",
-      "sha256": "4e895cc4719ba3cf7424abbb4ad3d034de7b8d846dffeba97da907b8447fd779",
-      "scope": "离线解码签名调用、官方 token 请求、代理及 Redis 配置分支；没有调用网络或缓存服务",
-      "state": "部分审阅",
+      "checkedAt": "2026-10-13",
+      "sha256": "1fee46cc71d6e8b1cf14d0f1177470aa0c146b37cce443272ca6d353b5d52105",
+      "scope": "保留前轮离线审阅；本轮仅修复官方 token 请求重定向、超时和内置重试配置，使用假 Cookie 与回环 HTTP 验证",
+      "state": "官方请求客户端边界已修复；整体调用链仍部分审阅",
       "findings": [
-        "签名调用传入 isvObfuscator 与仅含活动 URL、空 id 的 body；Cookie 参数在此主路径只作为官方 api.m.jd.com 请求头。活动 URL 的调用者仍需完整追踪。",
-        "官方请求未显式禁止重定向，超时为 30 秒，403 后等待；尚未接入统一限速/超时/停止规则。",
-        "可选 Redis 缓存会读取并提交账号 token；缓存实现、调用者及外部目标尚未完整审阅，当前凭据不得带入旧入口。"
+        "官方 isvObfuscator 请求现明确 followRedirect=false、timeout=10000、retry.limit=0；原请求 URL、签名 body、Cookie 和其他请求头保持不变。",
+        "固定 got 11.8.6 原生会清理跨主机/端口重定向的敏感头；没有观测到真实 Cookie 泄漏。本次进一步禁止所有重定向请求，落实请求边界。",
+        "签名获取、Redis、自定义缓存路径、代理及调用者仍部分审阅；403 的旧等待分支与整体调用次数限制尚未统一，不能放开旧入口凭据执行。"
       ],
-      "credentialedRunAllowed": false
+      "credentialedRunAllowed": false,
+      "businessVerified": false
     },
     {
       "file": "function/cache/index.js",
@@ -1794,13 +1795,39 @@
         "version": "2.0.2",
         "entrySha256": "d9a804f761d9da43e2990ff3677e77e08db8fdd6e505aec8044d4b0b51c129f4"
       }
+    },
+    {
+      "file": "function/dylib.js",
+      "checkedAt": "2026-10-13",
+      "sha256": "1a487a8ae06485003c62a1a6b3212c672bd54b9eb21f6f074d8a023b211672d8",
+      "scope": "纯离线字符串及结构分析；未执行模块入口、网络、代理、通知或账号缓存",
+      "state": "部分审阅，嵌套解码器仍待按作用域还原",
+      "findings": [
+        "初步字符串替换 2395 处；嵌套函数复用解码器名称，部分输出出现不可解释字符，不能将替换后的文件视为正确可执行还原。",
+        "本轮仅定位登录、token 和请求相关结构，未据局部分析断言所有外部传输安全。",
+        "快速 token 缓存入口仍依赖这两个模块；需继续还原局部解码器、调用参数和传输边界。"
+      ],
+      "credentialedRunAllowed": false
+    },
+    {
+      "file": "function/dylank.js",
+      "checkedAt": "2026-10-13",
+      "sha256": "5e7eab4c0090205666e78bae1f103c8a2d2547106eca7c79a96b9d2191861416",
+      "scope": "纯离线字符串及结构分析；未执行模块入口、网络、代理、通知或账号缓存",
+      "state": "部分审阅，嵌套解码器仍待按作用域还原",
+      "findings": [
+        "初步字符串替换 1491 处；嵌套函数复用解码器名称，部分输出出现不可解释字符，不能将替换后的文件视为正确可执行还原。",
+        "本轮仅定位登录、token 和请求相关结构，未据局部分析断言所有外部传输安全。",
+        "快速 token 缓存入口仍依赖这两个模块；需继续还原局部解码器、调用参数和传输边界。"
+      ],
+      "credentialedRunAllowed": false
     }
   ],
   "currentAccountAuthentication": {
-    "checkedAt": "2026-10-12T02:07:34.112987+00:00",
+    "checkedAt": "2026-10-13T02:10:53.597013+00:00",
     "category": "认证阻塞",
     "accountCount": 1,
-    "evidence": "当前已启用单账号 key/pin 与上次未登录检查相同；新增定时日志继续明确未登录。未重复探针请求。",
+    "evidence": "当前已启用单账号凭据与上次未登录检查相同；20 个新增任务日志中的认证及接口故障未出现业务恢复。未重复探针请求。",
     "requests": 0,
     "credentialedMaintenanceStopped": true,
     "needsUserAction": "在青龙更新 JD_COOKIE；不公开凭据，不绕过已拒绝的登录访问。",

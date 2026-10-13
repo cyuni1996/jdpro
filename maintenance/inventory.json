@@ -263,7 +263,7 @@
     {
       "file": "function/krgetToken.js",
       "kind": "dependency",
-      "sha256": "4e895cc4719ba3cf7424abbb4ad3d034de7b8d846dffeba97da907b8447fd779",
+      "sha256": "1fee46cc71d6e8b1cf14d0f1177470aa0c146b37cce443272ca6d353b5d52105",
       "validation": "语法/静态依赖；运行路径需要对应任务证据"
     },
     {
