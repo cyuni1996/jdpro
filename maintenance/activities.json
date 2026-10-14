@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-13",
+  "checkedAt": "2026-10-14",
   "newVerifiedActivities": [],
   "sources": [
     {
@@ -34,9 +34,9 @@
     }
   ],
   "lastDiscovery": {
-    "date": "2026-10-13",
+    "date": "2026-10-14",
     "entry": "https://m.jd.com/",
-    "result": "已检查官方首页、现有候选及规则搜索，仍未确认新免费日常活动；候选仍仅取得商品展示，未获得日期和资格证据。",
+    "result": "已检查官方首页和活动规则搜索；未确认新的免费日常活动。现有候选的工具内容为昨日抓取商品展示，缺少当天业务响应、日期和资格证据。",
     "candidateEntry": "https://pro.m.jd.com/mall/active/gFkdsmZNGWwvzFTRT76janC1ThJ/index.html",
     "qualificationAndLiveBusiness": "当前凭据与未登录检查时相同，不重复活动实测；候选保持未验证和关闭。"
   }

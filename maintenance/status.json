@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-13T02:10:53.597013+00:00",
+  "checkedAt": "2026-10-14T02:14:06.493253+00:00",
   "evidenceNotice": "51 项均有检查记录；今日只更新新增日志或修复路径，其余保留原检查日期。可用只指记录 scope 中明示动作成功；辅助模块审阅、未覆盖业务及凭据旧入口授权另列。原始日志和账号仅留本地。",
   "tasks": [
     {
@@ -1765,14 +1765,15 @@
     },
     {
       "file": "function/krgetToken.js",
-      "checkedAt": "2026-10-13",
-      "sha256": "1fee46cc71d6e8b1cf14d0f1177470aa0c146b37cce443272ca6d353b5d52105",
-      "scope": "保留前轮离线审阅；本轮仅修复官方 token 请求重定向、超时和内置重试配置，使用假 Cookie 与回环 HTTP 验证",
-      "state": "官方请求客户端边界已修复；整体调用链仍部分审阅",
+      "checkedAt": "2026-10-14",
+      "sha256": "e5b69b13af5e711b54df0f5874b56e3e7ef9e1862981290148c9271ac556df52",
+      "scope": "提取原 token 函数，签名/请求/缓存/计时器均使用无主机能力的虚拟替身；复现并修复 403 等待及空 token 入缓存分支",
+      "state": "官方请求及失败数据保护已修复；整体调用链仍部分审阅",
       "findings": [
-        "官方 isvObfuscator 请求现明确 followRedirect=false、timeout=10000、retry.limit=0；原请求 URL、签名 body、Cookie 和其他请求头保持不变。",
-        "固定 got 11.8.6 原生会清理跨主机/端口重定向的敏感头；没有观测到真实 Cookie 泄漏。本次进一步禁止所有重定向请求，落实请求边界。",
-        "签名获取、Redis、自定义缓存路径、代理及调用者仍部分审阅；403 的旧等待分支与整体调用次数限制尚未统一，不能放开旧入口凭据执行。"
+        "保留禁止重定向、十秒超时和关闭客户端内置重试；原 URL、签名 body 和请求头不变。",
+        "HTTP 403 后立即结束本次调用，不再按 JD_TOKEN_INTERVAL 安排等待；401、503、超时、空响应、未登录、风控及活动结束模拟都只请求一次，返回空字符串且不写缓存。",
+        "只有 code=0 且 token 为非空白字符串时才进入缓存和成功等待。正常 token、缓存命中、自定义签名 body 与 JD_NEWTOKEN_INTERVAL 的原有行为保留。",
+        "第三方签名、Redis、自定义缓存、代理、其他调用者和整体调用次数仍未完整审阅，禁止旧入口带凭据执行。"
       ],
       "credentialedRunAllowed": false,
       "businessVerified": false
@@ -1824,10 +1825,10 @@
     }
   ],
   "currentAccountAuthentication": {
-    "checkedAt": "2026-10-13T02:10:53.597013+00:00",
+    "checkedAt": "2026-10-14T02:14:06.493253+00:00",
     "category": "认证阻塞",
     "accountCount": 1,
-    "evidence": "当前已启用单账号凭据与上次未登录检查相同；20 个新增任务日志中的认证及接口故障未出现业务恢复。未重复探针请求。",
+    "evidence": "已启用单账号凭据与上次未登录检查相同；新增日志故障与前轮一致，未重复探针。",
     "requests": 0,
     "credentialedMaintenanceStopped": true,
     "needsUserAction": "在青龙更新 JD_COOKIE；不公开凭据，不绕过已拒绝的登录访问。",
