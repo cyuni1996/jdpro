@@ -24,17 +24,22 @@ function createTokenReplay(source, fixture = tokenFixture(source)) {
         const context = vm.createContext(Object.create(null), { codeGeneration: { strings: false, wasm: false } });
         vm.runInContext(`
             const scenario = ${JSON.stringify(scenario)};
-            const requests = [], signatureCalls = [], delays = [], cacheWrites = [];
+            const requests = [], signatureCalls = [], delays = [], cacheWrites = [], redisReads = [];
             const cache = {unrelated: 'keep-existing-value'};
             const console = {log() {}};
             function setTimeout(callback, milliseconds) { delays.push(milliseconds); callback(); return 1; }
             function lilIi(cookie, expression) { return cookie.match(expression)?.[0] || ''; }
             function l1l11I() { return 'dummy-activity-cache-key'; }
             const IilIil = {
-                get() { return scenario.cached || ''; },
+                get() { return scenario.cached; },
                 put(key, value, ttl) { cacheWrites.push({key, value, ttl}); cache[key] = value; }
             };
-            const l1iIIi = null, IilIl1 = false, lIII1l = false, l11i11 = '', I11iIl = 1000;
+            const l1iIIi = scenario.redis ? {async get(key) {
+                redisReads.push(key);
+                if (scenario.redisGetFailure) throw new Error('synthetic Redis read failure');
+                return scenario.redisCached;
+            }} : null;
+            const IilIl1 = false, lIII1l = false, l11i11 = '', I11iIl = 1000;
             const illIll = Boolean(scenario.customSigner), l1iIIl = '30', iiilll = String(scenario.successInterval || 0);
             async function I11iIi(functionId, input) {
                 signatureCalls.push({functionId, input});
@@ -55,7 +60,7 @@ function createTokenReplay(source, fixture = tokenFixture(source)) {
         const ranges = [...fixture.decoderRanges, ...fixture.preludeRanges, fixture.mainRange];
         vm.runInContext(ranges.map(range => source.slice(...range)).join('\n'), context, { timeout: 1000 });
         const result = await vm.runInContext(`IilIlI('pt_pin=dummy-account; pt_key=dummy-key;', 'https://activity.example.invalid/')
-            .then(token => JSON.stringify({token, requests, signatureCalls, delays, cacheWrites, cache}));`, context, { timeout: 100 });
+            .then(token => JSON.stringify({token, requests, signatureCalls, delays, cacheWrites, cache, redisReads}));`, context, { timeout: 100 });
         return JSON.parse(result);
     };
 }
