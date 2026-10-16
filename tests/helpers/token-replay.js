@@ -24,8 +24,9 @@ function createTokenReplay(source, fixture = tokenFixture(source)) {
         const context = vm.createContext(Object.create(null), { codeGeneration: { strings: false, wasm: false } });
         vm.runInContext(`
             const scenario = ${JSON.stringify(scenario)};
-            const requests = [], signatureCalls = [], delays = [], cacheWrites = [], redisReads = [];
+            const requests = [], signatureCalls = [], delays = [], cacheWrites = [], redisReads = [], redisCommands = [];
             const cache = {unrelated: 'keep-existing-value'};
+            const redisState = {unrelated: {value: 'keep-redis-existing-value', ttlMs: 1000}};
             const console = {log() {}};
             function setTimeout(callback, milliseconds) { delays.push(milliseconds); callback(); return 1; }
             function lilIi(cookie, expression) { return cookie.match(expression)?.[0] || ''; }
@@ -38,8 +39,19 @@ function createTokenReplay(source, fixture = tokenFixture(source)) {
                 redisReads.push(key);
                 if (scenario.redisGetFailure) throw new Error('synthetic Redis read failure');
                 return scenario.redisCached;
+            }, async set(key, value, options) {
+                redisCommands.push({command: 'SET', key, value, options});
+                if (scenario.redisSetFailure) throw new Error('synthetic Redis write failure');
+                redisState[key] = {value, ttlMs: options?.PX ?? null};
+                return 'OK';
+            }, async EXPIREAT(key, timestamp) {
+                redisCommands.push({command: 'EXPIREAT', key, timestamp});
+                if (scenario.redisExpireFailure) throw new Error('synthetic Redis expiry failure');
+                if (redisState[key]) redisState[key].ttlMs = timestamp * 1000 - Date.now();
+                return 1;
             }} : null;
-            const IilIl1 = false, lIII1l = false, l11i11 = '', I11iIl = 1000;
+            const IilIl1 = Boolean(scenario.redisSubmit), lIII1l = false, l11i11 = '';
+            const I11iIl = scenario.cacheTtlMs === undefined ? 1000 : Number(scenario.cacheTtlMs);
             const illIll = Boolean(scenario.customSigner), l1iIIl = '30', iiilll = String(scenario.successInterval || 0);
             async function I11iIi(functionId, input) {
                 signatureCalls.push({functionId, input});
@@ -60,7 +72,7 @@ function createTokenReplay(source, fixture = tokenFixture(source)) {
         const ranges = [...fixture.decoderRanges, ...fixture.preludeRanges, fixture.mainRange];
         vm.runInContext(ranges.map(range => source.slice(...range)).join('\n'), context, { timeout: 1000 });
         const result = await vm.runInContext(`IilIlI('pt_pin=dummy-account; pt_key=dummy-key;', 'https://activity.example.invalid/')
-            .then(token => JSON.stringify({token, requests, signatureCalls, delays, cacheWrites, cache, redisReads}));`, context, { timeout: 100 });
+            .then(token => JSON.stringify({token, requests, signatureCalls, delays, cacheWrites, cache, redisReads, redisCommands, redisState}));`, context, { timeout: 100 });
         return JSON.parse(result);
     };
 }

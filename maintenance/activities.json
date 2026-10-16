@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-15",
+  "checkedAt": "2026-10-16",
   "newVerifiedActivities": [],
   "sources": [
     {
@@ -30,14 +30,14 @@
       "end": null,
       "state": "未验证",
       "enabled": false,
-      "reason": "历史搜索标题与工具页面不一致；10 月 15 日工具返回昨日抓取的京东验证，没有活动规则日期、资格和业务响应，保持未验证。"
+      "reason": "10 月 16 日签到标题对应的官方页面正文仅见商品展示，未取得签到规则、有效期、资格和业务成功证据，保持未验证。"
     }
   ],
   "lastDiscovery": {
-    "date": "2026-10-15",
+    "date": "2026-10-16",
     "entry": "https://m.jd.com/",
-    "result": "官方移动首页今日仅有导航和商品展示；三组带 2026 年 10 月/双11/签到日期关键词的官方域名检索无结果。候选工具内容为昨日抓取的京东验证，缺少规则、资格与当前业务响应。",
+    "result": "官方首页今日抓取仍为导航与商品；签到候选今日正文为商品展示，缺少签到规则日期、资格及当前业务响应。日期关键词搜索主要返回拍卖、商品或非日常规则，未确认新的免费日常活动。",
     "candidateEntry": "https://pro.m.jd.com/mall/active/gFkdsmZNGWwvzFTRT76janC1ThJ/index.html",
-    "qualificationAndLiveBusiness": "当前凭据与未登录检查时相同，不重复活动实测；不绕过京东验证，候选保持未验证和关闭。"
+    "qualificationAndLiveBusiness": "当前凭据未变化，不重复认证失败实测；仅查看公开官方页面，不参与拍卖或购买，不启用新任务。"
   }
 }
