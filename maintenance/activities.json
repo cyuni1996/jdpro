@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-18",
+  "checkedAt": "2026-10-19",
   "newVerifiedActivities": [],
   "sources": [
     {
@@ -31,13 +31,46 @@
       "state": "未验证",
       "enabled": false,
       "reason": "10 月 18 日官方候选入口返回京东验证，缺少规则日期、有效期、资格及实时业务证据，保持未验证和关闭。"
+    },
+    {
+      "name": "京东 11.11 主会场（候选）",
+      "url": "https://pro.m.jd.com/mall/active/3c7fPajnafMRzdzKpc5W4y5PLTUn/index.html",
+      "activityId": "3c7fPajnafMRzdzKpc5W4y5PLTUn",
+      "start": null,
+      "end": null,
+      "state": "未验证",
+      "enabled": false,
+      "reason": "京东官方页面快照曾显示 11.11 主会场及抽红包入口，但该快照约 4 天前，未核实本轮活动规则、有效期、账号资格或实时业务响应；保持关闭。"
+    },
+    {
+      "name": "京东超市每日签到（候选）",
+      "url": "https://pro.m.jd.com/mall/active/3cRjCXVDJYMYu5DBuhqDp64UfTwx/index.html",
+      "activityId": "3cRjCXVDJYMYu5DBuhqDp64UfTwx",
+      "start": null,
+      "end": null,
+      "state": "未验证",
+      "enabled": false,
+      "reason": "官方搜索快照约 1 天前显示每日签到及连续签到奖励；直达页不可读取，未核实活动规则、有效期、账号资格或实时业务响应；保持关闭。"
     }
   ],
   "lastDiscovery": {
-    "date": "2026-10-18",
+    "date": "2026-10-19",
     "entry": "https://m.jd.com/",
-    "result": "官方移动首页取得导航和商品；候选入口为京东验证，未获得规则、日期或资格。两组限定官方域名的日期/签到检索无结果，未确认新免费日常活动。",
-    "candidateEntry": "https://pro.m.jd.com/mall/active/gFkdsmZNGWwvzFTRT76janC1ThJ/index.html",
-    "qualificationAndLiveBusiness": "当前凭据未变化，不重复认证失败实测；候选保持未验证和关闭。"
+    "result": "官方移动首页仅取得导航。京东搜索/页面快照发现 11.11 主会场及超市连续签到候选；快照分别约 4 天及 1 天前，未能核实实时页面、活动规则、有效期或资格。",
+    "candidates": [
+      {
+        "name": "京东 11.11 主会场（候选）",
+        "url": "https://pro.m.jd.com/mall/active/3c7fPajnafMRzdzKpc5W4y5PLTUn/index.html",
+        "activityId": "3c7fPajnafMRzdzKpc5W4y5PLTUn",
+        "state": "未验证"
+      },
+      {
+        "name": "京东超市每日签到（候选）",
+        "url": "https://pro.m.jd.com/mall/active/3cRjCXVDJYMYu5DBuhqDp64UfTwx/index.html",
+        "activityId": "3cRjCXVDJYMYu5DBuhqDp64UfTwx",
+        "state": "未验证"
+      }
+    ],
+    "qualificationAndLiveBusiness": "当前凭据与 10 月 11 日认证失败时一致，不重复探针；候选保持关闭，不开发新任务。"
   }
 }
