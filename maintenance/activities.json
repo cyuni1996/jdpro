@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-20",
+  "checkedAt": "2026-11-02",
   "newVerifiedActivities": [],
   "sources": [
     {
@@ -40,7 +40,7 @@
       "end": null,
       "state": "未验证",
       "enabled": false,
-      "reason": "10 月 20 日重新检查时，官方搜索快照显示该 ID 为心动购物季相关会场；页面可读内容与旧的 11.11 主会场描述不一致，且没有活动规则、有效期、账号资格或实时业务响应。保持未验证和关闭。"
+      "reason": "11 月 2 日京东官方页面可读，标题为 11.11 主会场并展示商品与会场入口；未见可核实的免费日常任务规则、活动有效期或账号资格，未进行账号操作，保持未验证和关闭。"
     },
     {
       "name": "京东超市每日签到（候选）",
@@ -50,7 +50,7 @@
       "end": null,
       "state": "未验证",
       "enabled": false,
-      "reason": "官方搜索快照曾显示每日签到及连续签到奖励；10 月 20 日直达页仍不可读取，未核实活动规则、有效期、账号资格或实时业务响应；保持关闭。"
+      "reason": "官方搜索快照曾显示每日签到及连续签到奖励；11 月 2 日直达页仍不可读取，未核实活动规则、有效期、账号资格或实时业务响应；保持关闭。"
     },
     {
       "name": "京东 11.11 主会场（候选）",
@@ -60,18 +60,50 @@
       "end": null,
       "state": "未验证",
       "enabled": false,
-      "reason": "京东官方搜索快照近期将该入口标为 11.11 主会场；直达检查返回京东验证，未确认规则、日期、资格或实时业务响应。与已记录的不同活动 ID 分别登记，保持关闭。"
+      "reason": "11 月 2 日京东官方页面可读，标题为 11.11 主会场并展示商品；缺少可核实的免费日常任务规则、有效期及账号资格，不视为业务验证，保持未验证和关闭。"
+    },
+    {
+      "name": "京东 11.11 主会场（候选）",
+      "url": "https://pro.m.jd.com/mall/active/249n8uzjwmA6eapmyNozq3XtwozG/index.html",
+      "activityId": "249n8uzjwmA6eapmyNozq3XtwozG",
+      "start": null,
+      "end": null,
+      "state": "未验证",
+      "enabled": false,
+      "reason": "官方搜索快照于 11 月 2 日仍显示 11.11 商品/优惠券会场；直达可读内容标题为“挑好物逛京东”，未见免费日常任务规则、日期、资格或业务响应，保持关闭。"
+    },
+    {
+      "name": "尖货抽签（候选，超出免费日常范围）",
+      "url": "https://pro.m.jd.com/mall/active/3daugcCtS9EZjADUEwD7tfYTJct8/index.html",
+      "activityId": "3daugcCtS9EZjADUEwD7tfYTJct8",
+      "start": null,
+      "end": null,
+      "state": "未验证",
+      "enabled": false,
+      "reason": "11 月 2 日官方页面可读，商品抽签含明确开奖日期，多数参与价格为 1 元或更高，也有少量免费商品；属逐商品抽签而非已授权的免费日常签到/浏览/种植/普通助力。本轮只读，不参与、不开发自动化。"
     }
   ],
   "lastDiscovery": {
-    "date": "2026-10-20",
+    "date": "2026-11-02",
     "entry": "https://m.jd.com/",
-    "result": "官方搜索发现新的 11.11 主会场候选 ID 3RsHb2v5J1gMuWY9UYbkdtJFScsJ；直达检查返回京东验证。已记录的 3c7f... 页面快照当前显示心动购物季相关内容，与旧的 11.11 描述不一致；超市签到页仍无法读取。规则、有效期、资格及业务响应均未确认。",
+    "result": "京东官方 11.11 主会场页面可读，3c7f... 与 3Rs... 为不同活动 ID，均展示商品会场；另发现 249n... 会场页面标题为“挑好物逛京东”。尖货抽签页面列出 11 月 3 日至 11 日的逐商品抽签，收费项目与资格/活动规则未审阅。没有发现已同时核实规则、日期、资格与实时响应的免费日常新任务。",
     "candidates": [
       {
         "name": "京东 11.11 主会场（候选）",
         "url": "https://pro.m.jd.com/mall/active/3c7fPajnafMRzdzKpc5W4y5PLTUn/index.html",
         "activityId": "3c7fPajnafMRzdzKpc5W4y5PLTUn",
+        "state": "未验证"
+      },
+      {
+        "name": "京东 11.11 主会场（候选）",
+        "url": "https://pro.m.jd.com/mall/active/3RsHb2v5J1gMuWY9UYbkdtJFScsJ/index.html",
+        "activityId": "3RsHb2v5J1gMuWY9UYbkdtJFScsJ",
+        "state": "未验证"
+      },
+      {
+        "name": "京东 11.11 主会场（候选）",
+        "url": "https://pro.m.jd.com/mall/active/249n8uzjwmA6eapmyNozq3XtwozG/index.html",
+        "activityId": "249n8uzjwmA6eapmyNozq3XtwozG",
         "state": "未验证"
       },
       {
@@ -81,12 +113,12 @@
         "state": "未验证"
       },
       {
-        "name": "京东 11.11 主会场（候选）",
-        "url": "https://pro.m.jd.com/mall/active/3RsHb2v5J1gMuWY9UYbkdtJFScsJ/index.html",
-        "activityId": "3RsHb2v5J1gMuWY9UYbkdtJFScsJ",
+        "name": "尖货抽签（候选，超出免费日常范围）",
+        "url": "https://pro.m.jd.com/mall/active/3daugcCtS9EZjADUEwD7tfYTJct8/index.html",
+        "activityId": "3daugcCtS9EZjADUEwD7tfYTJct8",
         "state": "未验证"
       }
     ],
-    "qualificationAndLiveBusiness": "当前凭据与 10 月 11 日认证失败时一致，不重复探针；新旧候选均未验证并保持关闭，不开发新任务。"
+    "qualificationAndLiveBusiness": "本轮未发起京东业务请求。青龙管理 API 返回 HTTP 401，无法核验当前账号或任务设置；所有候选均未验证并保持关闭。"
   }
 }
