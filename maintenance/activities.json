@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-02",
+  "checkedAt": "2026-11-09",
   "newVerifiedActivities": [],
   "sources": [
     {
@@ -50,7 +50,7 @@
       "end": null,
       "state": "未验证",
       "enabled": false,
-      "reason": "官方搜索快照曾显示每日签到及连续签到奖励；11 月 2 日直达页仍不可读取，未核实活动规则、有效期、账号资格或实时业务响应；保持关闭。"
+      "reason": "11 月 9 日复核：该 ID 的搜索快照约 5 天前显示每日签到字样，但直达页当前抓取标题为“挑好物逛京东”，无可读签到规则、日期、资格或实时业务响应；保持未验证和关闭，不能据此认定活动结束。"
     },
     {
       "name": "京东 11.11 主会场（候选）",
@@ -84,41 +84,23 @@
     }
   ],
   "lastDiscovery": {
-    "date": "2026-11-02",
-    "entry": "https://m.jd.com/",
-    "result": "京东官方 11.11 主会场页面可读，3c7f... 与 3Rs... 为不同活动 ID，均展示商品会场；另发现 249n... 会场页面标题为“挑好物逛京东”。尖货抽签页面列出 11 月 3 日至 11 日的逐商品抽签，收费项目与资格/活动规则未审阅。没有发现已同时核实规则、日期、资格与实时响应的免费日常新任务。",
+    "date": "2026-11-09",
+    "entry": "京东官方活动会场及规则搜索",
+    "result": "本周复核官方会场。已登记的活动 ID 3cRjCXVDJYMYu5DBuhqDp64UfTwx 搜索快照约 5 天前仍展示“每日签到”字样，但直接打开后的页面标题为“挑好物逛京东”，无签到规则、日期、资格或实时业务证据，因此维持未验证且关闭；没有核实到新的免费日常活动。尖货抽签 ID 3daugcCtS9EZjADUEwD7tfYTJct8 仍为逐商品付费抽签，超出允许范围，未参与、未开发。",
     "candidates": [
       {
-        "name": "京东 11.11 主会场（候选）",
-        "url": "https://pro.m.jd.com/mall/active/3c7fPajnafMRzdzKpc5W4y5PLTUn/index.html",
-        "activityId": "3c7fPajnafMRzdzKpc5W4y5PLTUn",
-        "state": "未验证"
-      },
-      {
-        "name": "京东 11.11 主会场（候选）",
-        "url": "https://pro.m.jd.com/mall/active/3RsHb2v5J1gMuWY9UYbkdtJFScsJ/index.html",
-        "activityId": "3RsHb2v5J1gMuWY9UYbkdtJFScsJ",
-        "state": "未验证"
-      },
-      {
-        "name": "京东 11.11 主会场（候选）",
-        "url": "https://pro.m.jd.com/mall/active/249n8uzjwmA6eapmyNozq3XtwozG/index.html",
-        "activityId": "249n8uzjwmA6eapmyNozq3XtwozG",
-        "state": "未验证"
-      },
-      {
-        "name": "京东超市每日签到（候选）",
+        "name": "京东超市每日签到（既有候选）",
         "url": "https://pro.m.jd.com/mall/active/3cRjCXVDJYMYu5DBuhqDp64UfTwx/index.html",
         "activityId": "3cRjCXVDJYMYu5DBuhqDp64UfTwx",
         "state": "未验证"
       },
       {
-        "name": "尖货抽签（候选，超出免费日常范围）",
+        "name": "尖货抽签（超出免费日常范围）",
         "url": "https://pro.m.jd.com/mall/active/3daugcCtS9EZjADUEwD7tfYTJct8/index.html",
         "activityId": "3daugcCtS9EZjADUEwD7tfYTJct8",
         "state": "未验证"
       }
     ],
-    "qualificationAndLiveBusiness": "本轮未发起京东业务请求。青龙管理 API 返回 HTTP 401，无法核验当前账号或任务设置；所有候选均未验证并保持关闭。"
+    "qualificationAndLiveBusiness": "未发起京东业务请求；没有账号资格和实时业务证据。"
   }
 }
