@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-09",
+  "checkedAt": "2026-11-12",
   "newVerifiedActivities": [],
   "sources": [
     {
@@ -81,13 +81,30 @@
       "state": "未验证",
       "enabled": false,
       "reason": "11 月 2 日官方页面可读，商品抽签含明确开奖日期，多数参与价格为 1 元或更高，也有少量免费商品；属逐商品抽签而非已授权的免费日常签到/浏览/种植/普通助力。本轮只读，不参与、不开发自动化。"
+    },
+    {
+      "name": "京东秒杀签到（候选）",
+      "url": "https://pro.m.jd.com/mall/active/JAjtcpqK8RDvB8A4k1ZBgViBKAL/index.html",
+      "activityId": "JAjtcpqK8RDvB8A4k1ZBgViBKAL",
+      "start": null,
+      "end": null,
+      "state": "未验证",
+      "enabled": false,
+      "reason": "11 月 12 日京东官方搜索快照在该会场摘要中显示“签到有奖”；直达页抓取结果为京东验证，未读取到活动规则、有效期、账号资格或实时任务响应。仅登记候选，不调用账号、不开发或启用脚本。"
     }
   ],
   "lastDiscovery": {
-    "date": "2026-11-09",
+    "date": "2026-11-12",
     "entry": "京东官方活动会场及规则搜索",
-    "result": "本周复核官方会场。已登记的活动 ID 3cRjCXVDJYMYu5DBuhqDp64UfTwx 搜索快照约 5 天前仍展示“每日签到”字样，但直接打开后的页面标题为“挑好物逛京东”，无签到规则、日期、资格或实时业务证据，因此维持未验证且关闭；没有核实到新的免费日常活动。尖货抽签 ID 3daugcCtS9EZjADUEwD7tfYTJct8 仍为逐商品付费抽签，超出允许范围，未参与、未开发。",
+    "result": "发现京东秒杀会场候选 ID JAjtcpqK8RDvB8A4k1ZBgViBKAL；官方搜索快照摘要显示“签到有奖”，但直达页为京东验证，无规则日期、资格或实时任务证据，按新活动候选登记为未验证并关闭。其他结果为 11.11 商品会场及逐商品抽签，无新的已验证免费日常任务。",
+    "qualificationAndLiveBusiness": "未发起京东业务请求；候选入口需要京东验证，账号资格及实时任务响应未知。",
     "candidates": [
+      {
+        "name": "京东秒杀签到（候选）",
+        "url": "https://pro.m.jd.com/mall/active/JAjtcpqK8RDvB8A4k1ZBgViBKAL/index.html",
+        "activityId": "JAjtcpqK8RDvB8A4k1ZBgViBKAL",
+        "state": "未验证"
+      },
       {
         "name": "京东超市每日签到（既有候选）",
         "url": "https://pro.m.jd.com/mall/active/3cRjCXVDJYMYu5DBuhqDp64UfTwx/index.html",
@@ -100,7 +117,6 @@
         "activityId": "3daugcCtS9EZjADUEwD7tfYTJct8",
         "state": "未验证"
       }
-    ],
-    "qualificationAndLiveBusiness": "未发起京东业务请求；没有账号资格和实时业务证据。"
+    ]
   }
 }
